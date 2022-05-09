@@ -1,0 +1,152 @@
+<html>
+  <body>
+    <h1>TTPMTG - Magic: the Gathering for Tabletop Playground</h1>
+    <p>
+      Hello and welcome to TTPMTG, the ultimate Magic: the Gathering experience
+      for Tabletop Playground!
+    </p>
+    <p>
+      To naviagate this manual, hover over it and use the primary action key
+      (default: R) to move forward a page, or the secondary action key (default:
+      CTRL-R) to move back a page.
+    </p>
+    <h2>Importing Preconstructed Decks</h2>
+    <p>
+      The easiest way to get started with TTPMTG is to get your hands on an
+      official precon deck and get playing!
+    </p>
+    <p>
+      You can use the command <span class="tt">/deck &lt;name&gt;</span> to
+      import a precon deck, where <span class="tt">&lt;name&gt;</span> is the
+      full name of the deck you want to play with. Use double quotes around the
+      pack's name if the name of the pack consists of multiple words. Once you
+      do that, the deck will appear under your cursor!
+    </p>
+    <p>
+      Don't know which deck to grab? No problem! Use the command
+      <span class="tt">/decks [terms]</span> to search for decks you might want
+      to play. <span class="tt">[terms]</span> is an optional argument, but if
+      provided, will narrow down the list of decks the command will show you.
+      You can search by both set code and deck name! Once you have the deck's
+      name, you can import it by passing that full name to
+      <span class="tt">/deck</span>.
+    </p>
+    <h2>Importing Custom Decks/Cubes</h2>
+    <p>
+      You may notice that by default, there's no cards laying around on the
+      table. Don't worry, though; you can quickly import any deck you have, from
+      a variety of sites, right onto TTPMTG!
+    </p>
+    <p>
+      To do this, use the command <span class="tt">/import &lt;url&gt;</span>,
+      where <span class="tt">&lt;url&gt;</span> is the full URL to the deck you
+      want to import! Sites you can use to import decks and cubes include:
+    </p>
+    <ul>
+      <li><a href="https://archidekt.com/">Archidekt</a></li>
+      <li><a href="https://www.mtggoldfish.com">MTG Goldfish</a></li>
+      <li><a href="https://moxfield.com">Moxfield</a></li>
+      <li><a href="https://aetherhub.com">Aetherhub</a></li>
+      <li><a href="https://deckstats.net">Deckstats</a></li>
+      <li><a href="https://mtgtop8.com">MTGTOP8</a></li>
+      <li><a href="https://mtgvault.com">MTG Vault</a></li>
+      <li><a href="https://cubecobra.com">Cube Cobra</a></li>
+    </ul>
+    <h2>Generating Booster Packs</h2>
+    <p>
+      Do you want to host a draft or sealed event, or just want to crack some
+      packs? We have you covered!
+    </p>
+    <p>
+      To generate booster packs, use the command
+      <span class="tt">/pack &lt;name&gt; [qty]</span>, where
+      <span class="tt">&lt;name&gt;</span> is either the full name of the pack
+      OR the pack's set code, and <span class="tt">[qty]</span> is optional, and
+      if provided, allows you to tell it to generate mutliple packs at once.
+      Much like with precon decks, you'll need double quotes for multi-word
+      packs.
+    </p>
+    <p>
+      Much like precon decks, you can search for Magic sets to generate packs
+      from. This is done via the command <span class="tt">/sets [terms]</span>.
+      <span class="tt">[terms]</span> is an optional argument, but if provided,
+      will narrow down the list of sets the command will show you. You can
+      search by both set code and set name here as well.
+    </p>
+    <p>
+      Do note that the pack generator is not collation-accurate at this time;
+      you may be able to get duplicates of the same card in a pack, among other
+      things. However, this generator does respect the chances and proportions
+      of each rarity in each pack correctly.
+    </p>
+    <h2>Tips and Tricks</h2>
+    <ul>
+      <li>
+        You can edit the number on life counters directly by clicking on the
+        number in the floating UI above it.
+        <ul>
+          <li>
+            You can increment, decrement, or even multiply/divide your life
+            total by entering an operator before the number. For example, typing
+            in <span class="tt">+5</span> in that box will add 5 to your life
+            total.
+          </li>
+          <li>
+            If you need to set your life total to a negative value, type
+            <span class="tt">=</span> before the number. (Normally, the text
+            entry will interpret negative numbers as you wanting to subtract
+            something from your life total.)
+          </li>
+          <li>
+            You don't have to use life counters just for counting life. You can
+            use it to count a large amount of counters on a card, keep track of
+            your storm count, or whatever else! You can create more life
+            counters from the object library.
+          </li>
+        </ul>
+      </li>
+      <li>
+        Press the primary action key (default: R) to tap/untap single cards.
+        Don't try this on stacks of cards, or you'll shuffle the stack instead!
+        (This is a feature, not a bug.)
+      </li>
+      <li>
+        If you need to place a single card into the world, rather than importing
+        from a website, you can create a blank card from the object library.
+        From there, you can right-click it and select
+        <span class="tt">Set card...</span>. This will open a hovering dialog
+        that allows you to search for cards to add to the game.
+        <ul>
+          <li>
+            You can also select <span class="tt">Add card...</span> to an
+            existing stack of cards to add new cards to that stack via name
+            search.
+          </li>
+        </ul>
+      </li>
+      <li>
+        You have available a variety of counters at your disposal! You can
+        quickly make a copy of an existing counter by pressing the primary
+        action key (default: R) while hovering over them.
+      </li>
+    </ul>
+    <h2>Known Issues</h2>
+    <ul>
+      <li>
+        Pressing the number keys to take cards off the top of the deck is
+        broken. A bugfix is pending on Plasticity Studios's end, but for now,
+        draw your cards manually.
+      </li>
+      <li>
+        There's some graphical flickering when moving your cursor away from your
+        life counter. No idea what's causing that whatsoever. It shouldn't
+        affect the usability of the life counters.
+      </li>
+      <li>
+        There are some issues that occur when a stack of cards has a mix of
+        flipped and unflipped cards. As such, stacking of flipped and unflipped
+        cards has been temporarily disabled.
+      </li>
+    </ul>
+  </body>
+</html>
