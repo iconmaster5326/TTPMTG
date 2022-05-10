@@ -19,7 +19,8 @@ const ACTION_SET = "Set Card...",
   ACTION_ADD = "Add Card...",
   ACTION_TAP = "Tap",
   ACTION_UNTAP = "Untap",
-  ACTION_XFORM = "Transform";
+  ACTION_XFORM = "Transform",
+  ACTION_ADD_RELATED = "Get Related Tokens";
 
 /////////////
 // public API
@@ -129,7 +130,7 @@ refCard.toggleTapped = function () {
 };
 
 refCard.scryfallData = function (cardIndex) {
-  return fetchScryfallDataByID(thisCard.getCardInfo(cardIndex).id);
+  return world.fetchScryfallDataByID(thisCard.getCardInfo(cardIndex).id);
 };
 
 refCard.isTransformed = function () {
@@ -169,6 +170,26 @@ refCard.setTransformed = function (value) {
 
 refCard.toggleTransformed = function () {
   thisCard.setTransformed(!thisCard.isTransformed());
+};
+
+refCard.relatedTokens = function () {
+  const relatedTokens = [];
+  const promises = [];
+  for (let i = 0; i < thisCard.getStackSize(); i++) {
+    promises.push(
+      thisCard.scryfallData(i).then(function (data) {
+        if (data !== undefined && data.all_parts !== undefined) {
+          data.all_parts.forEach((part) => {
+            if (part.component == "token") {
+              relatedTokens.push(part.id);
+            }
+          });
+          return;
+        }
+      })
+    );
+  }
+  return Promise.all(promises).then((_) => relatedTokens);
 };
 
 ///////////////////
@@ -233,16 +254,30 @@ function refresh(cards, cardIndex) {
           // single-faced card
           cards.setTextureOverrideURLAt(cardData.image_uris.large, cardIndex);
         }
-        // set metadata
-        if (cards.getStackSize() == 1) {
-          cards.setName(cardData.name);
-        }
       }
     });
   }
 
-  if (cards.getStackSize() != 1) {
+  refreshFlippedState(cards);
+}
+
+function refreshFlippedState(cards) {
+  // add a button to add tokens if this stack has related tokens
+  if (cards.isFaceUp() /** && cards.relatedTokens().length > 0 */) {
+    cards.addCustomAction(
+      ACTION_ADD_RELATED,
+      "Get the tokens that these cards can produce."
+    );
+  } else {
+    cards.removeCustomAction(ACTION_ADD_RELATED);
+  }
+  // disable name if card is face down or if it's a stack
+  if (!cards.isFaceUp() || cards.getStackSize() != 1) {
     cards.setName(undefined);
+  } else {
+    cards.scryfallData(0).then(function (card) {
+      cards.setName(card.name);
+    });
   }
 }
 
@@ -255,14 +290,6 @@ function refreshTappedState(cards) {
     cards.removeCustomAction(ACTION_UNTAP);
     cards.addCustomAction(ACTION_TAP, "Tap this card.");
   }
-}
-
-function updateGenericCardStackData(cards) {
-  const metadata = JSON.stringify({ tapped: cards.isTapped() });
-  console.log(
-    "[" + cards.getId() + "] Saving card-stack metadata: " + metadata
-  );
-  cards.setSavedData(metadata);
 }
 
 /////////////////
@@ -358,6 +385,15 @@ refCard.onCustomAction.add(function (_, player, name) {
     case ACTION_XFORM:
       refCard.toggleTransformed();
       break;
+    case ACTION_ADD_RELATED:
+      const tokens = [];
+      refCard.relatedTokens().then(function (ts) {
+        ts.forEach((t) => tokens.push(new world.ImportCardInfo({ id: t })));
+        world.importCards(player, tokens, 1, function (deckObject) {
+          deckObject.flipOrUpright();
+        });
+      });
+      break;
   }
 });
 
@@ -380,6 +416,15 @@ refCard.onPrimaryAction.add(function (_, player) {
       ];
     }
     refCard.setAllCardInfo(data);
+  }
+});
+
+let lastFlippedState = refCard.isFaceUp();
+refCard.onTick.add(function (_, delta) {
+  const nextFlippedState = refCard.isFaceUp();
+  if (lastFlippedState != nextFlippedState) {
+    lastFlippedState = nextFlippedState;
+    refreshFlippedState(refCard);
   }
 });
 

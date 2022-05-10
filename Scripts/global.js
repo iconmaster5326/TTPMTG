@@ -37,7 +37,7 @@ world.fetchScryfallDataByID = function (id) {
         );
       });
   } else {
-    return new Promise((resolve, reject) => resolve(result));
+    return Promise.resolve(result);
   }
 };
 
@@ -58,7 +58,7 @@ world.fetchScryfallDataByName = function (name) {
         );
       });
   } else {
-    return new Promise((resolve, reject) => resolve(result));
+    return Promise.resolve(result);
   }
 };
 
@@ -85,7 +85,7 @@ world.fetchScryfallDataBySetCode = function (code, number) {
         );
       });
   } else {
-    return new Promise((resolve, reject) => resolve(result));
+    return Promise.resolve(result);
   }
 };
 
@@ -134,7 +134,7 @@ function normalize(s) {
   return s.replace(/[^a-zA-Z\d]/g, "").toUpperCase();
 }
 
-class CardInfo {
+class ImportCardInfo {
   constructor(options = {}) {
     this.id = options.id;
     this.name = options.name;
@@ -164,9 +164,7 @@ class CardInfo {
     }
 
     if (this.id) {
-      return new Promise(function (resolve, reject) {
-        resolve(processCard(self.id));
-      });
+      return Promise.resolve(processCard(self.id));
     } else if (this.name) {
       return world.fetchScryfallDataByName(this.name).then(function (card) {
         if (card.id === undefined) {
@@ -184,16 +182,19 @@ class CardInfo {
           return processCard(card.id);
         });
     } else {
-      throw "bad CardInfo object!";
+      throw "bad world.ImportCardInfo object!";
     }
   }
 }
+world.ImportCardInfo = ImportCardInfo;
 
-function importCards(sender, cards, deckIndex, onSuccess) {
+world.importCards = function (sender, cards, deckIndex, onSuccess) {
+  const cards_ = [...cards];
+
   function doImport(deckObject) {
-    const card = cards.shift();
+    const card = cards_.shift();
     card.makeCard(sender, deckObject, deckIndex).then(function (deckObject) {
-      if (cards.length > 0) {
+      if (cards_.length > 0) {
         doImport(deckObject);
       } else {
         onSuccess(deckObject);
@@ -201,12 +202,12 @@ function importCards(sender, cards, deckIndex, onSuccess) {
     });
   }
 
-  if (cards.length > 0) {
+  if (cards_.length > 0) {
     doImport(undefined);
   } else {
     sender.sendChatMessage("No cards to import!", new Color(255, 0, 0));
   }
-}
+};
 
 globalEvents.onChatMessage.add(function (sender, message) {
   const COMMAND_IMPORT = "/import",
@@ -258,11 +259,14 @@ globalEvents.onChatMessage.add(function (sender, message) {
               if (mainboard) {
                 console.log("Adding " + card.card.uid + " to mainboard");
                 mainCards.push(
-                  new CardInfo({ id: card.card.uid, quantity: card.quantity })
+                  new world.ImportCardInfo({
+                    id: card.card.uid,
+                    quantity: card.quantity,
+                  })
                 );
               }
             });
-            importCards(sender, mainCards, 0, function (deckObject) {
+            world.importCards(sender, mainCards, 0, function (deckObject) {
               sender.sendChatMessage(
                 "Successfully imported " +
                   deckObject.getStackSize() +
@@ -276,12 +280,15 @@ globalEvents.onChatMessage.add(function (sender, message) {
               if (card.categories.includes("Sideboard")) {
                 console.log("Adding " + card.card.uid + " to sideboard");
                 sideCards.push(
-                  new CardInfo({ id: card.card.uid, quantity: card.quantity })
+                  new world.ImportCardInfo({
+                    id: card.card.uid,
+                    quantity: card.quantity,
+                  })
                 );
               }
             });
             if (sideCards.length > 0)
-              importCards(sender, sideCards, 1, function (deckObject) {
+              world.importCards(sender, sideCards, 1, function (deckObject) {
                 sender.sendChatMessage(
                   "Successfully imported " +
                     deckObject.getStackSize() +
@@ -295,19 +302,27 @@ globalEvents.onChatMessage.add(function (sender, message) {
               if (card.categories.includes("Commander")) {
                 console.log("Adding " + card.card.uid + " to commanders");
                 commanderCards.push(
-                  new CardInfo({ id: card.card.uid, quantity: card.quantity })
+                  new world.ImportCardInfo({
+                    id: card.card.uid,
+                    quantity: card.quantity,
+                  })
                 );
               }
             });
             if (commanderCards.length > 0)
-              importCards(sender, commanderCards, 1, function (deckObject) {
-                sender.sendChatMessage(
-                  "Successfully imported " +
-                    deckObject.getStackSize() +
-                    " commanders!",
-                  new Color(0, 255, 0)
-                );
-              });
+              world.importCards(
+                sender,
+                commanderCards,
+                1,
+                function (deckObject) {
+                  sender.sendChatMessage(
+                    "Successfully imported " +
+                      deckObject.getStackSize() +
+                      " commanders!",
+                    new Color(0, 255, 0)
+                  );
+                }
+              );
           })
           .catch(function (reason) {
             console.log("Problem in global Archidekt fetch: " + reason);
@@ -329,14 +344,16 @@ globalEvents.onChatMessage.add(function (sender, message) {
           $(".boardlist .member").each(function (i, v) {
             var cardName = $(".card .card-link", v).attr("data-name");
             var cardQty = parseInt($(".qty", v).attr("data-qty"));
-            mainCards.push(new CardInfo({ name: cardName, quantity: cardQty }));
+            mainCards.push(
+              new world.ImportCardInfo({ name: cardName, quantity: cardQty })
+            );
           });
           $(".card-hover:has(.commander-img)").each(function (i, v) {
             var cardName = $(v).attr("data-name");
-            commanders.push(new CardInfo({ name: cardName }));
+            commanders.push(new world.ImportCardInfo({ name: cardName }));
           });
 
-          importCards(sender, mainCards, 0, function (deckObject) {
+          world.importCards(sender, mainCards, 0, function (deckObject) {
             sender.sendChatMessage(
               "Successfully imported " +
                 deckObject.getStackSize() +
@@ -346,7 +363,7 @@ globalEvents.onChatMessage.add(function (sender, message) {
           });
 
           if (commanders.length > 0)
-            importCards(sender, commanders, 1, function (deckObject) {
+            world.importCards(sender, commanders, 1, function (deckObject) {
               sender.sendChatMessage(
                 "Successfully imported " +
                   deckObject.getStackSize() +
@@ -372,11 +389,11 @@ globalEvents.onChatMessage.add(function (sender, message) {
               var cardQty = parseInt($("td:nth-child(1)", v).text().trim());
               var cardName = $("td:nth-child(2) span a", v).text().trim();
               mainCards.push(
-                new CardInfo({ name: cardName, quantity: cardQty })
+                new world.ImportCardInfo({ name: cardName, quantity: cardQty })
               );
             });
 
-          importCards(sender, mainCards, 0, function (deckObject) {
+          world.importCards(sender, mainCards, 0, function (deckObject) {
             sender.sendChatMessage(
               "Successfully imported " +
                 deckObject.getStackSize() +
@@ -402,10 +419,13 @@ globalEvents.onChatMessage.add(function (sender, message) {
 
           Object.values(deckJson.mainboard).forEach(function (v) {
             mainCards.push(
-              new CardInfo({ id: v.card.scryfall_id, quantity: v.quantity })
+              new world.ImportCardInfo({
+                id: v.card.scryfall_id,
+                quantity: v.quantity,
+              })
             );
           });
-          importCards(sender, mainCards, 0, function (deckObject) {
+          world.importCards(sender, mainCards, 0, function (deckObject) {
             sender.sendChatMessage(
               "Successfully imported " +
                 deckObject.getStackSize() +
@@ -416,11 +436,14 @@ globalEvents.onChatMessage.add(function (sender, message) {
 
           Object.values(deckJson.commanders).forEach(function (v) {
             commanders.push(
-              new CardInfo({ id: v.card.scryfall_id, quantity: v.quantity })
+              new world.ImportCardInfo({
+                id: v.card.scryfall_id,
+                quantity: v.quantity,
+              })
             );
           });
           if (commanders.length > 0)
-            importCards(sender, commanders, 1, function (deckObject) {
+            world.importCards(sender, commanders, 1, function (deckObject) {
               sender.sendChatMessage(
                 "Successfully imported " +
                   deckObject.getStackSize() +
@@ -460,10 +483,12 @@ globalEvents.onChatMessage.add(function (sender, message) {
                 .text()
             );
             console.log("Importing " + cardQty + "x " + cardName + "...");
-            cards.push(new CardInfo({ name: cardName, quantity: cardQty }));
+            cards.push(
+              new world.ImportCardInfo({ name: cardName, quantity: cardQty })
+            );
           });
 
-          importCards(sender, cards, 0, function (deckObject) {
+          world.importCards(sender, cards, 0, function (deckObject) {
             sender.sendChatMessage(
               "Successfully imported " +
                 deckObject.getStackSize() +
@@ -515,10 +540,12 @@ globalEvents.onChatMessage.add(function (sender, message) {
             .forEach(function (kv) {
               const cardQty = kv[0];
               const cardName = kv[1];
-              cards.push(new CardInfo({ name: cardName, quantity: cardQty }));
+              cards.push(
+                new world.ImportCardInfo({ name: cardName, quantity: cardQty })
+              );
             });
 
-          importCards(sender, cards, 0, function (deckObject) {
+          world.importCards(sender, cards, 0, function (deckObject) {
             sender.sendChatMessage(
               "Successfully imported " +
                 deckObject.getStackSize() +
@@ -549,10 +576,12 @@ globalEvents.onChatMessage.add(function (sender, message) {
                 .text()
             );
             const cardName = $("span", v).text();
-            cards.push(new CardInfo({ name: cardName, quantity: cardQty }));
+            cards.push(
+              new world.ImportCardInfo({ name: cardName, quantity: cardQty })
+            );
           });
 
-          importCards(sender, cards, 0, function (deckObject) {
+          world.importCards(sender, cards, 0, function (deckObject) {
             sender.sendChatMessage(
               "Successfully imported " +
                 deckObject.getStackSize() +
@@ -596,10 +625,12 @@ globalEvents.onChatMessage.add(function (sender, message) {
               );
               cardName = $("span:nth-child(2) a", v).text();
             }
-            cards.push(new CardInfo({ name: cardName, quantity: cardQty }));
+            cards.push(
+              new world.ImportCardInfo({ name: cardName, quantity: cardQty })
+            );
           });
 
-          importCards(sender, cards, 0, function (deckObject) {
+          world.importCards(sender, cards, 0, function (deckObject) {
             sender.sendChatMessage(
               "Successfully imported " +
                 deckObject.getStackSize() +
@@ -624,10 +655,10 @@ globalEvents.onChatMessage.add(function (sender, message) {
           const cards = [];
 
           cube.cards.forEach((card) => {
-            cards.push(new CardInfo({ id: card.cardID }));
+            cards.push(new world.ImportCardInfo({ id: card.cardID }));
           });
 
-          importCards(sender, cards, 0, function (deckObject) {
+          world.importCards(sender, cards, 0, function (deckObject) {
             sender.sendChatMessage(
               "Successfully imported " +
                 deckObject.getStackSize() +
@@ -784,23 +815,28 @@ globalEvents.onChatMessage.add(function (sender, message) {
               console.assert(fullCardData !== undefined);
               // add the card to the pack
               cardsToGenerate.push(
-                new CardInfo({
+                new world.ImportCardInfo({
                   setCode: fullCardData.setCode,
                   setNumber: fullCardData.number,
                 })
               );
             });
             // actually make the cards now
-            importCards(sender, cardsToGenerate, i, function (deckObject) {
-              sender.sendChatMessage(
-                "Successfully generated pack " +
-                  (i + 1) +
-                  " of " +
-                  packData.name +
-                  "!",
-                new Color(0, 255, 0)
-              );
-            });
+            world.importCards(
+              sender,
+              cardsToGenerate,
+              i,
+              function (deckObject) {
+                sender.sendChatMessage(
+                  "Successfully generated pack " +
+                    (i + 1) +
+                    " of " +
+                    packData.name +
+                    "!",
+                  new Color(0, 255, 0)
+                );
+              }
+            );
           }
         }
 
@@ -923,14 +959,14 @@ globalEvents.onChatMessage.add(function (sender, message) {
           const cards = [];
           deckContents.mainBoard.forEach(function (card) {
             cards.push(
-              new CardInfo({
+              new world.ImportCardInfo({
                 setCode: card.setCode,
                 setNumber: card.number,
                 quantity: card.count,
               })
             );
           });
-          importCards(sender, cards, 0, function (deckObject) {
+          world.importCards(sender, cards, 0, function (deckObject) {
             sender.sendChatMessage(
               "Successfully imported " +
                 deckObject.getStackSize() +
@@ -943,14 +979,14 @@ globalEvents.onChatMessage.add(function (sender, message) {
             const sideCards = [];
             deckContents.sideBoard.forEach(function (card) {
               sideCards.push(
-                new CardInfo({
+                new world.ImportCardInfo({
                   setCode: card.setCode,
                   setNumber: card.number,
                   quantity: card.count,
                 })
               );
             });
-            importCards(sender, sideCards, 1, function (deckObject) {
+            world.importCards(sender, sideCards, 1, function (deckObject) {
               sender.sendChatMessage(
                 "Successfully imported " +
                   deckObject.getStackSize() +
@@ -964,14 +1000,14 @@ globalEvents.onChatMessage.add(function (sender, message) {
             const commanders = [];
             deckContents.commander.forEach(function (card) {
               commanders.push(
-                new CardInfo({
+                new world.ImportCardInfo({
                   setCode: card.setCode,
                   setNumber: card.number,
                   quantity: card.count,
                 })
               );
             });
-            importCards(sender, commanders, 1, function (deckObject) {
+            world.importCards(sender, commanders, 1, function (deckObject) {
               sender.sendChatMessage(
                 "Successfully imported " +
                   deckObject.getStackSize() +
