@@ -43,13 +43,13 @@ untapAll.onClicked.add(function (_, player) {
       pos = obj.getPosition();
     if (
       obj.getTemplateId() == CARD_TEMPLATE &&
-      obj.tapped &&
+      obj.isTapped() &&
       pos.x >= center.x - extents.x &&
       pos.x <= center.x + extents.x &&
       pos.y >= center.y - extents.y &&
       pos.y <= center.y + extents.y
     ) {
-      obj.toggleTapped(obj);
+      obj.toggleTapped();
     }
   });
 });

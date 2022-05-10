@@ -20,141 +20,171 @@ const ACTION_SET = "Set Card...",
   ACTION_TAP = "Tap",
   ACTION_UNTAP = "Untap";
 
-function updateCardProperties(card) {
-  for (let i = 0; i < card.data.length; i++) {
-    const cardState = card.data[i];
-    const cardIndex = i;
+/////////////
+// public API
+/////////////
 
-    card.removeCustomAction(ACTION_SET);
-    card.removeCustomAction(ACTION_ADD);
-
-    if (cardState.id === undefined) {
-      card.setTextureOverrideURLAt(undefined, cardIndex);
-      if (card.getStackSize() == 1) {
-        card.setName(undefined);
-        card.addCustomAction(ACTION_SET, "Set this card by name.");
-      }
-    } else {
-      card.addCustomAction(ACTION_ADD, "Add a card by name to this stack.");
-      fetch(SCRYFALL_URL + "cards/" + cardState.id, {})
-        .then(function (fetchResponse) {
-          const cardData = fetchResponse.json();
-          if (cardData.image_uris !== undefined) {
-            card.setTextureOverrideURLAt(cardData.image_uris.large, cardIndex);
-          }
-          if (card.getStackSize() == 1) {
-            card.setName(cardData.name);
-          }
-        })
-        .catch(function (reason) {
-          console.log(
-            "[" +
-              refCard.getId() +
-              "] Problem in Scryfall image fetch: " +
-              reason
-          );
-        });
+const thisCard = refCard;
+refCard.getCardInfo = function (cardIndex) {
+  const saveData = thisCard.getSavedData(cardIndex.toString());
+  console.log(
+    "[" +
+      thisCard.getId() +
+      "] getting data at index " +
+      cardIndex +
+      ": " +
+      saveData
+  );
+  if (saveData) {
+    try {
+      return JSON.parse(saveData);
+    } catch (e) {
+      return {};
+    }
+  } else {
+    return {};
+  }
+};
+refCard.getAllCardInfo = function () {
+  const result = [];
+  for (let i = 0; i < thisCard.getStackSize(); i++) {
+    result.push(thisCard.getCardInfo(i));
+  }
+  return result;
+};
+refCard.setCardInfo = function (cardIndex, newData) {
+  console.log(
+    "[" +
+      thisCard.getId() +
+      "] setting data at index " +
+      cardIndex +
+      ": " +
+      JSON.stringify(newData)
+  );
+  thisCard.setSavedData(JSON.stringify(newData), cardIndex.toString());
+  refresh(thisCard, cardIndex);
+};
+refCard.setAllCardInfo = function (newData) {
+  for (let i = 0; i < newData.length; i++) {
+    thisCard.setCardInfo(i, newData[i]);
+  }
+};
+refCard.isTapped = function () {
+  const saveData = thisCard.getSavedData();
+  console.log("[" + thisCard.getId() + "] getting global state: " + saveData);
+  if (saveData) {
+    try {
+      return JSON.parse(saveData).tapped;
+    } catch (e) {
+      return false;
+    }
+  } else {
+    return false;
+  }
+};
+refCard.setTapped = function (value) {
+  const saveDataStr = thisCard.getSavedData();
+  let saveData = {};
+  if (saveDataStr) {
+    try {
+      saveData = JSON.parse(saveDataStr);
+    } catch (e) {
+      // do nothing
     }
   }
+  saveData.tapped = value;
+  console.log(
+    "[" +
+      thisCard.getId() +
+      "] setting global state: " +
+      JSON.stringify(saveData)
+  );
+  thisCard.setSavedData(JSON.stringify(saveData));
+  refreshTappedState(thisCard);
+};
+refCard.toggleTapped = function () {
+  let tapped = thisCard.isTapped();
 
-  if (card.getStackSize() != 1) {
-    card.setName(undefined);
+  if (tapped) {
+    thisCard.setRotation(
+      thisCard.getRotation().compose(new Rotator(0, -90, 0)),
+      1
+    );
+  } else {
+    thisCard.setRotation(
+      thisCard.getRotation().compose(new Rotator(0, 90, 0)),
+      1
+    );
   }
 
-  if (card.tapped) {
-    card.removeCustomAction(ACTION_TAP);
-    card.addCustomAction(ACTION_UNTAP, "Untap this card.");
+  thisCard.setTapped(!tapped);
+};
+
+///////////////////
+// Helper functions
+///////////////////
+
+function refresh(cards, cardIndex) {
+  console.log("[" + cards.getId() + "] refreshing index " + cardIndex + "...");
+  const cardState = cards.getCardInfo(cardIndex);
+
+  cards.removeCustomAction(ACTION_SET);
+  cards.removeCustomAction(ACTION_ADD);
+
+  if (cardState.id === undefined) {
+    cards.setTextureOverrideURLAt(undefined, cardIndex);
+    if (cards.getStackSize() == 1) {
+      cards.setName(undefined);
+      cards.addCustomAction(ACTION_SET, "Set this card by name.");
+    }
   } else {
-    card.removeCustomAction(ACTION_UNTAP);
-    card.addCustomAction(ACTION_TAP, "Tap this card.");
+    cards.addCustomAction(ACTION_ADD, "Add a card by name to this stack.");
+    fetch(SCRYFALL_URL + "cards/" + cardState.id, {})
+      .then(function (fetchResponse) {
+        const cardData = fetchResponse.json();
+        if (cardData.image_uris !== undefined) {
+          cards.setTextureOverrideURLAt(cardData.image_uris.large, cardIndex);
+        }
+        if (cards.getStackSize() == 1) {
+          cards.setName(cardData.name);
+        }
+      })
+      .catch(function (reason) {
+        console.log(
+          "[" + refCard.getId() + "] Problem in Scryfall image fetch: " + reason
+        );
+      });
+  }
+
+  if (cards.getStackSize() != 1) {
+    cards.setName(undefined);
+  }
+}
+
+function refreshTappedState(cards) {
+  console.log("[" + cards.getId() + "] refreshing tapped state...");
+  if (cards.isTapped()) {
+    cards.removeCustomAction(ACTION_TAP);
+    cards.addCustomAction(ACTION_UNTAP, "Untap this card.");
+  } else {
+    cards.removeCustomAction(ACTION_UNTAP);
+    cards.addCustomAction(ACTION_TAP, "Tap this card.");
   }
 }
 
 function updateGenericCardStackData(cards) {
-  const metadata = JSON.stringify({ tapped: cards.tapped });
+  const metadata = JSON.stringify({ tapped: cards.isTapped() });
   console.log(
     "[" + cards.getId() + "] Saving card-stack metadata: " + metadata
   );
   cards.setSavedData(metadata);
 }
 
-function updateCards(cards) {
-  updateCardProperties(cards);
-  for (let i = 0; i < cards.data.length; i++) {
-    try {
-      const card = cards.data[i];
-      cards.setSavedData(JSON.stringify(card), i.toString());
-      console.log(
-        "[" +
-          cards.getId() +
-          "] Saving card data for index " +
-          i +
-          ": " +
-          JSON.stringify(JSON.stringify(card))
-      );
-    } catch (e) {
-      cards.setSavedData(JSON.stringify({}), i.toString());
-      console.log(
-        "[" + cards.getId() + "] WARNING: Saving data failed for index " + i
-      );
-      console.trace(e);
-    }
-    updateGenericCardStackData(cards);
-  }
-}
-
-// load saved data
-if (refCard.data === undefined) {
-  refCard.data = [];
-  for (let i = 0; i < refCard.getStackSize(); i++) {
-    const cardData = refCard.getSavedData(i.toString());
-    if (cardData === undefined) {
-      refCard.data.push({});
-    } else {
-      try {
-        refCard.data.push(JSON.parse(cardData));
-        console.log(
-          "[" +
-            refCard.getId() +
-            "] Loading card data for index " +
-            i +
-            ": " +
-            JSON.stringify(JSON.parse(cardData))
-        );
-      } catch (e) {
-        refCard.data.push({});
-        console.log(
-          "[" +
-            refCard.getId() +
-            "] WARNING: Error on data string " +
-            cardData +
-            " for card index " +
-            i
-        );
-        console.trace(e);
-      }
-    }
-  }
-
-  let genericSaveData = refCard.getSavedData();
-  if (genericSaveData !== undefined) {
-    console.log(
-      "[" +
-        refCard.getId() +
-        "] Loading card-stack metadata: " +
-        genericSaveData
-    );
-    genericSaveData = JSON.parse(refCard.getSavedData());
-    refCard.tapped = genericSaveData.tapped;
-  }
-} else {
-  console.log("[" + refCard.getId() + "] Already had data");
-}
-
-updateCards(refCard);
-
+/////////////////
 // handle actions
-var dialogUiIndex = undefined;
+/////////////////
+
+let dialogUiIndex = undefined;
 
 function showSearchDialog(callback) {
   const ui = new UIElement();
@@ -229,38 +259,11 @@ function showSearchDialog(callback) {
   });
 }
 
-function toggleTapped(card) {
-  try {
-    if (card.tapped) {
-      console.log("Untapping!");
-      card.setRotation(card.getRotation().compose(new Rotator(0, -90, 0)), 1);
-    } else {
-      console.log("Tapping!");
-      card.setRotation(card.getRotation().compose(new Rotator(0, 90, 0)), 1);
-    }
-    card.tapped = !card.tapped;
-
-    if (card.tapped) {
-      card.removeCustomAction(ACTION_TAP);
-      card.addCustomAction(ACTION_UNTAP, "Untap this card.");
-    } else {
-      card.removeCustomAction(ACTION_UNTAP);
-      card.addCustomAction(ACTION_TAP, "Tap this card.");
-    }
-  } catch (e) {
-    console.log("error in tapping: " + e);
-    console.trace(e);
-  }
-
-  updateGenericCardStackData(card);
-}
-
 refCard.onCustomAction.add(function (_, player, name) {
   switch (name) {
     case ACTION_SET:
       showSearchDialog(function (card) {
-        refCard.data[0].id = card.id;
-        updateCards(refCard);
+        refCard.setAllCardInfo([{ id: card.id }]);
       });
       break;
     case ACTION_ADD:
@@ -269,15 +272,13 @@ refCard.onCustomAction.add(function (_, player, name) {
           "259D66CE415FF02DA2381FBCDB053E1B",
           player.getCursorPosition()
         );
-        newCard.data = [{ id: card.id }];
-        newCard.updateCards(newCard);
-        refCard.addCards(newCard);
-        updateCards(refCard);
+        newCard.setAllCardInfo([{ id: card.id }]);
+        refCard.addCards(newCard, true);
       });
       break;
     case ACTION_UNTAP:
     case ACTION_TAP:
-      toggleTapped(refCard);
+      refCard.toggleTapped();
       break;
   }
 });
@@ -285,38 +286,55 @@ refCard.onCustomAction.add(function (_, player, name) {
 refCard.onPrimaryAction.add(function (_, player) {
   if (refCard.getStackSize() == 1) {
     // tap and untap only if we're not shuffling; that is, if we're 1 card
-    toggleTapped(refCard);
+    refCard.toggleTapped();
   } else {
     // actually shuffle it here, as the TTP shuffler does not inform us of
     // changes to card states
-    let currentIndex = refCard.data.length,
+    let data = refCard.getAllCardInfo();
+    let currentIndex = data.length,
       randomIndex;
     while (currentIndex != 0) {
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
-      [refCard.data[currentIndex], refCard.data[randomIndex]] = [
-        refCard.data[randomIndex],
-        refCard.data[currentIndex],
+      [data[currentIndex], data[randomIndex]] = [
+        data[randomIndex],
+        data[currentIndex],
       ];
     }
-    updateCards(refCard);
+    refCard.setAllCardInfo(data);
   }
 });
 
+///////////////////////////
 // handle splitting/merging
+///////////////////////////
+
 refCard.onRemoved.add(function (_, removedCard, index, player) {
   console.log(
     "Removing index " +
       index +
       "(refCard = " +
       refCard.getId() +
+      " x" +
+      refCard.getStackSize() +
       ", removedCard = " +
-      removedCard.getId() +
+      +removedCard.getId() +
+      " x" +
+      removedCard.getStackSize() +
       ")"
   );
-  removedCard.data = refCard.data.splice(index, 1);
-  updateCards(removedCard);
-  updateCards(refCard);
+  // fix up bad data
+  const data = [];
+  for (
+    let i = 0;
+    i < refCard.getStackSize() + removedCard.getStackSize();
+    i++
+  ) {
+    data.push(refCard.getCardInfo(i));
+  }
+  // actually splice in good data
+  removedCard.setAllCardInfo(data.splice(index, removedCard.getStackSize()));
+  refCard.setAllCardInfo(data);
 });
 
 refCard.onInserted.add(function (_, insertedCard, index, player) {
@@ -325,17 +343,28 @@ refCard.onInserted.add(function (_, insertedCard, index, player) {
       index +
       "(refCard = " +
       refCard.getId() +
+      " x" +
+      refCard.getStackSize() +
       ", insertedCard = " +
       insertedCard.getId() +
+      " x" +
+      insertedCard.getStackSize() +
       ")"
   );
-  if (insertedCard.data === undefined) {
-    insertedCard.data = [];
-  }
-  refCard.data.splice(index, 0, ...insertedCard.data);
-  updateCards(refCard);
+  const data = refCard.getAllCardInfo();
+  // fix up bad data
+  data.splice(-insertedCard.getStackSize(), insertedCard.getStackSize());
+  // actually splice in good data
+  data.splice(index, 0, ...insertedCard.getAllCardInfo());
+  refCard.setAllCardInfo(data);
 });
 
-// set methods for later use
-refCard.updateCards = updateCards;
-refCard.toggleTapped = toggleTapped;
+///////////////
+// initlization
+///////////////
+
+for (let i = 0; i < refCard.getStackSize(); i++) {
+  refresh(refCard, i);
+}
+
+refreshTappedState(refCard);

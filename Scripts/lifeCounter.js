@@ -11,19 +11,31 @@ const {
   world,
 } = require("@tabletop-playground/api");
 
-function updateValue(v) {
-  refObject.value = v;
+/////////////
+// public API
+/////////////
+
+const thisCounter = refObject;
+
+refObject.getValue = function () {
+  let value = parseInt(thisCounter.getSavedData());
+  if (isNaN(value)) {
+    value = 20;
+  }
+  return value;
+};
+
+refObject.setValue = function (v) {
   text.setText(v);
   staticUI.widget.setText(v);
   refObject.setSavedData(v);
-}
+};
+
+////////////////
+// Events and UI
+////////////////
 
 var minus, text, plus;
-
-refObject.value = parseInt(refObject.getSavedData());
-if (isNaN(refObject.value)) {
-  refObject.value = 20;
-}
 
 let ui = new UIElement();
 ui.position = new Vector(2, 0, 1);
@@ -31,16 +43,18 @@ ui.rotation = new Rotator(20, 0, 0);
 ui.widget = new HorizontalBox()
   .addChild((minus = new Button().setText("-")))
   .addChild(
-    (text = new TextBox().setText(refObject.value).setSelectTextOnFocus(true))
+    (text = new TextBox()
+      .setText(refObject.getValue())
+      .setSelectTextOnFocus(true))
   )
   .addChild((plus = new Button().setText("+")));
 
 minus.onClicked.add(function (_, player) {
-  updateValue(refObject.value - 1);
+  refObject.setValue(refObject.getValue() - 1);
 });
 
 plus.onClicked.add(function (_, player) {
-  updateValue(refObject.value + 1);
+  refObject.setValue(refObject.getValue() + 1);
 });
 
 text.onTextCommitted.add(function (_, player, textAdded, usingEnter) {
@@ -50,22 +64,22 @@ text.onTextCommitted.add(function (_, player, textAdded, usingEnter) {
 
   if (textAdded.startsWith("+")) {
     op = function (v) {
-      return refObject.value + v;
+      return refObject.getValue() + v;
     };
     textAdded = textAdded.substring(1);
   } else if (textAdded.startsWith("-")) {
     op = function (v) {
-      return refObject.value - v;
+      return refObject.getValue() - v;
     };
     textAdded = textAdded.substring(1);
   } else if (textAdded.startsWith("*")) {
     op = function (v) {
-      return refObject.value * v;
+      return refObject.getValue() * v;
     };
     textAdded = textAdded.substring(1);
   } else if (textAdded.startsWith("/")) {
     op = function (v) {
-      return refObject.value / v;
+      return refObject.getValue() / v;
     };
     textAdded = textAdded.substring(1);
   } else if (textAdded.startsWith("=")) {
@@ -74,9 +88,9 @@ text.onTextCommitted.add(function (_, player, textAdded, usingEnter) {
 
   let newValue = parseInt(textAdded);
   if (!isNaN(newValue)) {
-    updateValue(op(newValue));
+    refObject.setValue(op(newValue));
   } else {
-    text.setText(refObject.value);
+    text.setText(refObject.getValue());
   }
 });
 
@@ -107,7 +121,7 @@ globalEvents.onTick.add(function (_) {
 
 let staticUI = new UIElement();
 staticUI.position = new Vector(0, 0, 0.2);
-staticUI.widget = new Text().setText(refObject.value).setFontSize(24);
+staticUI.widget = new Text().setText(refObject.getValue()).setFontSize(24);
 refObject.addUI(staticUI);
 
 let OWN_THIS = "Take Ownership",

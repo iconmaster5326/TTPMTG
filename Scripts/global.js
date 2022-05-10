@@ -80,8 +80,7 @@ class CardInfo {
           CARD_TEMPLATE,
           new Vector(cpos.x, cpos.y + deckIndex * 10, cpos.z + 4)
         );
-        newCard.data = [{ id: id }];
-        newCard.updateCards(newCard);
+        newCard.setAllCardInfo([{ id: id }]);
         if (deckObject === undefined) {
           deckObject = newCard;
         } else {
