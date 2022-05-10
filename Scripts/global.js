@@ -16,6 +16,79 @@ const CARD_TEMPLATE = "259D66CE415FF02DA2381FBCDB053E1B";
 
 world.startDebugMode();
 
+const scryfallCacheByID = {},
+  scryfallCacheByName = {},
+  scryfallCacheBySetCode = {};
+
+world.fetchScryfallDataByID = function (id) {
+  let result = scryfallCacheByID[id];
+  if (result === undefined) {
+    return fetch(SCRYFALL_URL + "cards/" + id)
+      .then(function (fetchResponse) {
+        result = fetchResponse.json();
+        scryfallCacheByID[result.id] = result;
+        scryfallCacheByName[result.name] = result;
+        scryfallCacheBySetCode[result.set + result.collector_number] = result;
+        return result;
+      })
+      .catch(function (reason) {
+        console.log(
+          "Problem in scryfallData fetch for ID " + id + ": " + reason
+        );
+      });
+  } else {
+    return new Promise((resolve, reject) => resolve(result));
+  }
+};
+
+world.fetchScryfallDataByName = function (name) {
+  let result = scryfallCacheByName[name];
+  if (result === undefined) {
+    return fetch(SCRYFALL_URL + "cards/named?exact=" + encodeURI(name))
+      .then(function (fetchResponse) {
+        result = fetchResponse.json();
+        scryfallCacheByID[result.id] = result;
+        scryfallCacheByName[result.name] = result;
+        scryfallCacheBySetCode[result.set + result.collector_number] = result;
+        return result;
+      })
+      .catch(function (reason) {
+        console.log(
+          "Problem in scryfallData fetch for name " + name + ": " + reason
+        );
+      });
+  } else {
+    return new Promise((resolve, reject) => resolve(result));
+  }
+};
+
+world.fetchScryfallDataBySetCode = function (code, number) {
+  let result = scryfallCacheBySetCode[code + number];
+  if (result === undefined) {
+    return fetch(
+      SCRYFALL_URL + "cards/" + code.toLowerCase() + "/" + number.toLowerCase()
+    )
+      .then(function (fetchResponse) {
+        result = fetchResponse.json();
+        scryfallCacheByID[result.id] = result;
+        scryfallCacheByName[result.name] = result;
+        scryfallCacheBySetCode[result.set + result.collector_number] = result;
+        return result;
+      })
+      .catch(function (reason) {
+        console.log(
+          "Problem in scryfallData fetch for set code " +
+            code +
+            number +
+            ": " +
+            reason
+        );
+      });
+  } else {
+    return new Promise((resolve, reject) => resolve(result));
+  }
+};
+
 let allSets,
   allBoosters = {},
   allDecks;
@@ -95,47 +168,20 @@ class CardInfo {
         resolve(processCard(self.id));
       });
     } else if (this.name) {
-      return fetch(SCRYFALL_URL + "cards/named?exact=" + encodeURI(this.name))
-        .then(function (response) {
-          var card = response.json();
-          if (card.id === undefined) {
-            throw card.details;
-          }
-          return processCard(card.id);
-        })
-        .catch(function (reason) {
-          sender.sendChatMessage(
-            "Could not fetch card with name " + self.name + ": " + reason,
-            new Color(255, 0, 0)
-          );
-          throw reason;
-        });
+      return world.fetchScryfallDataByName(this.name).then(function (card) {
+        if (card.id === undefined) {
+          throw card.details;
+        }
+        return processCard(card.id);
+      });
     } else if (this.setCode && this.setNumber) {
-      return fetch(
-        SCRYFALL_URL +
-          "cards/" +
-          this.setCode.toLowerCase() +
-          "/" +
-          this.setNumber.toLowerCase()
-      )
-        .then(function (response) {
-          var card = response.json();
+      return world
+        .fetchScryfallDataBySetCode(this.setCode, this.setNumber)
+        .then(function (card) {
           if (card.id === undefined) {
             throw card.details;
           }
           return processCard(card.id);
-        })
-        .catch(function (reason) {
-          sender.sendChatMessage(
-            "Could not fetch card " +
-              self.setCode +
-              " " +
-              self.setNumber +
-              ": " +
-              reason,
-            new Color(255, 0, 0)
-          );
-          throw reason;
         });
     } else {
       throw "bad CardInfo object!";

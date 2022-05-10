@@ -25,6 +25,7 @@ const ACTION_SET = "Set Card...",
 /////////////
 
 const thisCard = refCard;
+
 refCard.getCardInfo = function (cardIndex) {
   const saveData = thisCard.getSavedData(cardIndex.toString());
   console.log(
@@ -45,6 +46,7 @@ refCard.getCardInfo = function (cardIndex) {
     return {};
   }
 };
+
 refCard.getAllCardInfo = function () {
   const result = [];
   for (let i = 0; i < thisCard.getStackSize(); i++) {
@@ -52,6 +54,7 @@ refCard.getAllCardInfo = function () {
   }
   return result;
 };
+
 refCard.setCardInfo = function (cardIndex, newData) {
   console.log(
     "[" +
@@ -64,11 +67,13 @@ refCard.setCardInfo = function (cardIndex, newData) {
   thisCard.setSavedData(JSON.stringify(newData), cardIndex.toString());
   refresh(thisCard, cardIndex);
 };
+
 refCard.setAllCardInfo = function (newData) {
   for (let i = 0; i < newData.length; i++) {
     thisCard.setCardInfo(i, newData[i]);
   }
 };
+
 refCard.isTapped = function () {
   const saveData = thisCard.getSavedData();
   console.log("[" + thisCard.getId() + "] getting global state: " + saveData);
@@ -82,6 +87,7 @@ refCard.isTapped = function () {
     return false;
   }
 };
+
 refCard.setTapped = function (value) {
   const saveDataStr = thisCard.getSavedData();
   let saveData = {};
@@ -102,6 +108,7 @@ refCard.setTapped = function (value) {
   thisCard.setSavedData(JSON.stringify(saveData));
   refreshTappedState(thisCard);
 };
+
 refCard.toggleTapped = function () {
   let tapped = thisCard.isTapped();
 
@@ -118,6 +125,10 @@ refCard.toggleTapped = function () {
   }
 
   thisCard.setTapped(!tapped);
+};
+
+refCard.scryfallData = function (cardIndex) {
+  return fetchScryfallDataByID(thisCard.getCardInfo(cardIndex).id);
 };
 
 ///////////////////
@@ -138,22 +149,21 @@ function refresh(cards, cardIndex) {
       cards.addCustomAction(ACTION_SET, "Set this card by name.");
     }
   } else {
+    // add actions
     cards.addCustomAction(ACTION_ADD, "Add a card by name to this stack.");
-    fetch(SCRYFALL_URL + "cards/" + cardState.id, {})
-      .then(function (fetchResponse) {
-        const cardData = fetchResponse.json();
+    // fetch card data
+    world.fetchScryfallDataByID(cardState.id).then(function (cardData) {
+      if (cardData !== undefined) {
+        // fetch image
         if (cardData.image_uris !== undefined) {
           cards.setTextureOverrideURLAt(cardData.image_uris.large, cardIndex);
         }
+        // set metadata
         if (cards.getStackSize() == 1) {
           cards.setName(cardData.name);
         }
-      })
-      .catch(function (reason) {
-        console.log(
-          "[" + refCard.getId() + "] Problem in Scryfall image fetch: " + reason
-        );
-      });
+      }
+    });
   }
 
   if (cards.getStackSize() != 1) {
@@ -230,21 +240,11 @@ function showSearchDialog(callback) {
           var cardButton;
           matches.addChild((cardButton = new Button().setText(cardName)));
           cardButton.onClicked.add(function (_, player) {
-            fetch(SCRYFALL_URL + "cards/named?exact=" + encodeURI(cardName))
-              .then(function (response) {
-                var card = response.json();
-                refCard.removeUI(dialogUiIndex);
-                dialogUiIndex = undefined;
-                callback(card);
-              })
-              .catch(function (reason) {
-                console.log(
-                  "[" +
-                    refCard.getId() +
-                    "] Problem in Scryfall by-name fetch: " +
-                    reason
-                );
-              });
+            world.fetchScryfallDataByName(cardName).then(function (card) {
+              refCard.removeUI(dialogUiIndex);
+              dialogUiIndex = undefined;
+              callback(card);
+            });
           });
         });
       })
