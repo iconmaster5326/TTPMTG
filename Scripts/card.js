@@ -420,7 +420,7 @@ refCard.onPrimaryAction.add(function (_, player) {
 });
 
 let lastFlippedState = refCard.isFaceUp();
-refCard.onTick.add(function (_, delta) {
+refCard.onMovementStopped.add(function (_, delta) {
   const nextFlippedState = refCard.isFaceUp();
   if (lastFlippedState != nextFlippedState) {
     lastFlippedState = nextFlippedState;
