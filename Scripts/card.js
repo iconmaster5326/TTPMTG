@@ -386,7 +386,7 @@ refCard.onCustomAction.add(function (_, player, name) {
       refCard.toggleTransformed();
       break;
     case ACTION_ADD_RELATED:
-      const tokens = [];
+      let tokens = [];
       refCard.relatedTokens().then(function (ts) {
         ts.forEach((t) => tokens.push(new world.ImportCardInfo({ id: t })));
         world.importCards(player, tokens, 1, function (deckObject) {
