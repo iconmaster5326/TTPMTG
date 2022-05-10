@@ -70,6 +70,14 @@ function updateCardProperties(card) {
   }
 }
 
+function updateGenericCardStackData(cards) {
+  const metadata = JSON.stringify({ tapped: cards.tapped });
+  console.log(
+    "[" + cards.getId() + "] Saving card-stack metadata: " + metadata
+  );
+  cards.setSavedData(metadata);
+}
+
 function updateCards(cards) {
   updateCardProperties(cards);
   for (let i = 0; i < cards.data.length; i++) {
@@ -78,7 +86,7 @@ function updateCards(cards) {
       cards.setSavedData(JSON.stringify(card), i.toString());
       console.log(
         "[" +
-          refCard.getId() +
+          cards.getId() +
           "] Saving card data for index " +
           i +
           ": " +
@@ -87,10 +95,11 @@ function updateCards(cards) {
     } catch (e) {
       cards.setSavedData(JSON.stringify({}), i.toString());
       console.log(
-        "[" + refCard.getId() + "] WARNING: Saving data failed for index " + i
+        "[" + cards.getId() + "] WARNING: Saving data failed for index " + i
       );
       console.trace(e);
     }
+    updateGenericCardStackData(cards);
   }
 }
 
@@ -125,6 +134,18 @@ if (refCard.data === undefined) {
         console.trace(e);
       }
     }
+  }
+
+  let genericSaveData = refCard.getSavedData();
+  if (genericSaveData !== undefined) {
+    console.log(
+      "[" +
+        refCard.getId() +
+        "] Loading card-stack metadata: " +
+        genericSaveData
+    );
+    genericSaveData = JSON.parse(refCard.getSavedData());
+    refCard.tapped = genericSaveData.tapped;
   }
 } else {
   console.log("[" + refCard.getId() + "] Already had data");
@@ -230,6 +251,8 @@ function toggleTapped(card) {
     console.log("error in tapping: " + e);
     console.trace(e);
   }
+
+  updateGenericCardStackData(card);
 }
 
 refCard.onCustomAction.add(function (_, player, name) {
@@ -315,3 +338,4 @@ refCard.onInserted.add(function (_, insertedCard, index, player) {
 
 // set methods for later use
 refCard.updateCards = updateCards;
+refCard.toggleTapped = toggleTapped;

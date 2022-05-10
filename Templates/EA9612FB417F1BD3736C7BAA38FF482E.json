@@ -25,7 +25,7 @@
 	"Flippable": false,
 	"AutoStraighten": false,
 	"ShouldSnap": true,
-	"ScriptName": "",
+	"ScriptName": "deckHolder.js",
 	"Blueprint": "Blueprints/Board.json",
 	"Models": [
 		{
@@ -107,8 +107,10 @@
 			"Y": 0,
 			"Z": 1.00011,
 			"Range": 3.35302,
-			"SnapRotation": true,
-			"RotationOffset": 0
+			"SnapRotation": 2,
+			"RotationOffset": 0,
+			"Shape": 0,
+			"FlipValidity": 0
 		}
 	],
 	"ZoomViewDirection":
@@ -116,5 +118,6 @@
 		"X": 0,
 		"Y": 0,
 		"Z": 0
-	}
+	},
+	"Tags": []
 }

@@ -107,7 +107,7 @@ globalEvents.onTick.add(function (_) {
 
 let staticUI = new UIElement();
 staticUI.position = new Vector(0, 0, 0.2);
-staticUI.widget = new Text().setText(refObject.value);
+staticUI.widget = new Text().setText(refObject.value).setFontSize(24);
 refObject.addUI(staticUI);
 
 let OWN_THIS = "Take Ownership",
