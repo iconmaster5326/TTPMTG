@@ -18,7 +18,8 @@ const SCRYFALL_URL = "https://api.scryfall.com/";
 const ACTION_SET = "Set Card...",
   ACTION_ADD = "Add Card...",
   ACTION_TAP = "Tap",
-  ACTION_UNTAP = "Untap";
+  ACTION_UNTAP = "Untap",
+  ACTION_XFORM = "Transform";
 
 /////////////
 // public API
@@ -131,11 +132,58 @@ refCard.scryfallData = function (cardIndex) {
   return fetchScryfallDataByID(thisCard.getCardInfo(cardIndex).id);
 };
 
+refCard.isTransformed = function () {
+  const saveData = thisCard.getSavedData();
+  console.log("[" + thisCard.getId() + "] getting global state: " + saveData);
+  if (saveData) {
+    try {
+      return JSON.parse(saveData).xformed;
+    } catch (e) {
+      return false;
+    }
+  } else {
+    return false;
+  }
+};
+
+refCard.setTransformed = function (value) {
+  const saveDataStr = thisCard.getSavedData();
+  let saveData = {};
+  if (saveDataStr) {
+    try {
+      saveData = JSON.parse(saveDataStr);
+    } catch (e) {
+      // do nothing
+    }
+  }
+  saveData.xformed = value;
+  console.log(
+    "[" +
+      thisCard.getId() +
+      "] setting global state: " +
+      JSON.stringify(saveData)
+  );
+  thisCard.setSavedData(JSON.stringify(saveData));
+  refresh(thisCard, 0);
+};
+
+refCard.toggleTransformed = function () {
+  thisCard.setTransformed(!thisCard.isTransformed());
+};
+
 ///////////////////
 // Helper functions
 ///////////////////
 
 function refresh(cards, cardIndex) {
+  const DFC_LAYOUTS = [
+    "modal_dfc",
+    "transform",
+    "meld",
+    "double_faced_token",
+    "reversible_card",
+  ];
+
   console.log("[" + cards.getId() + "] refreshing index " + cardIndex + "...");
   const cardState = cards.getCardInfo(cardIndex);
 
@@ -149,13 +197,40 @@ function refresh(cards, cardIndex) {
       cards.addCustomAction(ACTION_SET, "Set this card by name.");
     }
   } else {
-    // add actions
+    // add default actions
     cards.addCustomAction(ACTION_ADD, "Add a card by name to this stack.");
     // fetch card data
     world.fetchScryfallDataByID(cardState.id).then(function (cardData) {
       if (cardData !== undefined) {
+        // add actions
+        if (
+          cards.getStackSize() == 1 &&
+          DFC_LAYOUTS.includes(cardData.layout)
+        ) {
+          cards.addCustomAction(
+            ACTION_XFORM,
+            "Flip this double-faced card over."
+          );
+        } else {
+          cards.removeCustomAction(ACTION_XFORM);
+        }
         // fetch image
-        if (cardData.image_uris !== undefined) {
+        if (DFC_LAYOUTS.includes(cardData.layout)) {
+          // double-faced card
+          let imageIndex;
+          if (cards.isTransformed()) {
+            imageIndex = 1;
+          } else {
+            imageIndex = 0;
+          }
+          if (cardData.card_faces[imageIndex].image_uris !== undefined) {
+            cards.setTextureOverrideURLAt(
+              cardData.card_faces[imageIndex].image_uris.large,
+              cardIndex
+            );
+          }
+        } else if (cardData.image_uris !== undefined) {
+          // single-faced card
           cards.setTextureOverrideURLAt(cardData.image_uris.large, cardIndex);
         }
         // set metadata
@@ -279,6 +354,9 @@ refCard.onCustomAction.add(function (_, player, name) {
     case ACTION_UNTAP:
     case ACTION_TAP:
       refCard.toggleTapped();
+      break;
+    case ACTION_XFORM:
+      refCard.toggleTransformed();
       break;
   }
 });
