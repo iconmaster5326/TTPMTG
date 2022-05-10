@@ -64,7 +64,7 @@
 	},
 	"requiredPackages": [
 		{
-			"name": "Magic: The Gathering (Deckmaster)",
+			"name": "MTGTTP",
 			"guid": "50A3373643159EA82BC95AB86B4A5CE3"
 		},
 		{
@@ -139,8 +139,8 @@
 				"y": 0,
 				"z": 0
 			},
-			"objectScriptPackage": "00000000000000000000000000000000",
-			"objectScriptName": "",
+			"objectScriptPackage": "50A3373643159EA82BC95AB86B4A5CE3",
+			"objectScriptName": "deckHolder.js",
 			"persistentData": "",
 			"persistentKeyData":
 			{
@@ -158,9 +158,9 @@
 			{
 				"rotation":
 				{
-					"x": -1.3097576842535652e-11,
+					"x": -1.3097575975173914e-11,
 					"y": 2.6631610694494157e-07,
-					"z": 4.9180565838469192e-05,
+					"z": 4.9180562200490385e-05,
 					"w": 1
 				},
 				"translation":
@@ -208,8 +208,8 @@
 				"y": 0,
 				"z": 0
 			},
-			"objectScriptPackage": "00000000000000000000000000000000",
-			"objectScriptName": "",
+			"objectScriptPackage": "50A3373643159EA82BC95AB86B4A5CE3",
+			"objectScriptName": "deckHolder.js",
 			"persistentData": "",
 			"persistentKeyData":
 			{
@@ -229,7 +229,7 @@
 				{
 					"x": 1.0652827313606394e-06,
 					"y": -1.1904527497108575e-07,
-					"z": 0.00015395642549265176,
+					"z": 0.00015395641094073653,
 					"w": 1
 				},
 				"translation":
@@ -266,7 +266,7 @@
 			"restitution": 0.30000001192092896,
 			"density": 1,
 			"surfaceType": "SurfaceType2",
-			"objectName": "Deck",
+			"objectName": "Library",
 			"objectDescription": "",
 			"collisionType": "CB_Ground",
 			"templateId": "EA9612FB417F1BD3736C7BAA38FF482E",
@@ -277,8 +277,8 @@
 				"y": 0,
 				"z": 0
 			},
-			"objectScriptPackage": "00000000000000000000000000000000",
-			"objectScriptName": "",
+			"objectScriptPackage": "50A3373643159EA82BC95AB86B4A5CE3",
+			"objectScriptName": "deckHolder.js",
 			"persistentData": "",
 			"persistentKeyData":
 			{
@@ -296,9 +296,9 @@
 			{
 				"rotation":
 				{
-					"x": -1.8577433991140424e-07,
-					"y": -5.6652837802928513e-13,
-					"z": 3.0495511964545585e-06,
+					"x": -1.8577432570054953e-07,
+					"y": -5.6652826960906788e-13,
+					"z": 3.0495509690808831e-06,
 					"w": 1
 				},
 				"translation":
@@ -346,8 +346,8 @@
 				"y": 0,
 				"z": 0
 			},
-			"objectScriptPackage": "00000000000000000000000000000000",
-			"objectScriptName": "",
+			"objectScriptPackage": "50A3373643159EA82BC95AB86B4A5CE3",
+			"objectScriptName": "deckHolder.js",
 			"persistentData": "",
 			"persistentKeyData":
 			{
@@ -367,7 +367,7 @@
 				{
 					"x": 5.3263221388988313e-07,
 					"y": 1.9900125384358924e-12,
-					"z": 3.736185135494452e-06,
+					"z": 3.7361849081207765e-06,
 					"w": 1
 				},
 				"translation":
@@ -415,8 +415,8 @@
 				"y": 0,
 				"z": 0
 			},
-			"objectScriptPackage": "00000000000000000000000000000000",
-			"objectScriptName": "",
+			"objectScriptPackage": "50A3373643159EA82BC95AB86B4A5CE3",
+			"objectScriptName": "deckHolder.js",
 			"persistentData": "",
 			"persistentKeyData":
 			{
@@ -434,9 +434,9 @@
 			{
 				"rotation":
 				{
-					"x": -1.0668712491224142e-07,
-					"y": -3.1200468098881162e-13,
-					"z": 2.9244829420349561e-06,
+					"x": -1.0668711780681406e-07,
+					"y": -3.12004626778703e-13,
+					"z": 2.9244827146612806e-06,
 					"w": 1
 				},
 				"translation":
@@ -484,8 +484,8 @@
 				"y": 0,
 				"z": 0
 			},
-			"objectScriptPackage": "00000000000000000000000000000000",
-			"objectScriptName": "",
+			"objectScriptPackage": "50A3373643159EA82BC95AB86B4A5CE3",
+			"objectScriptName": "deckHolder.js",
 			"persistentData": "",
 			"persistentKeyData":
 			{
@@ -553,8 +553,8 @@
 				"y": 0,
 				"z": 0
 			},
-			"objectScriptPackage": "00000000000000000000000000000000",
-			"objectScriptName": "",
+			"objectScriptPackage": "50A3373643159EA82BC95AB86B4A5CE3",
+			"objectScriptName": "fieldHolder.js",
 			"persistentData": "",
 			"persistentKeyData":
 			{
@@ -622,8 +622,8 @@
 				"y": 0,
 				"z": 0
 			},
-			"objectScriptPackage": "00000000000000000000000000000000",
-			"objectScriptName": "",
+			"objectScriptPackage": "50A3373643159EA82BC95AB86B4A5CE3",
+			"objectScriptName": "deckHolder.js",
 			"persistentData": "",
 			"persistentKeyData":
 			{
@@ -642,7 +642,7 @@
 				"rotation":
 				{
 					"x": -5.9604651880817983e-08,
-					"y": 3.9527122908111778e-08,
+					"y": 3.9527112249970742e-08,
 					"z": -0.99999994039535522,
 					"w": 3.5762786865234375e-07
 				},
@@ -680,7 +680,7 @@
 			"restitution": 0.30000001192092896,
 			"density": 1,
 			"surfaceType": "SurfaceType2",
-			"objectName": "",
+			"objectName": "Battlefield",
 			"objectDescription": "",
 			"collisionType": "CB_Ground",
 			"templateId": "2F26B686486369E69EA3BD864FAC8885",
@@ -691,8 +691,8 @@
 				"y": 0,
 				"z": 0
 			},
-			"objectScriptPackage": "00000000000000000000000000000000",
-			"objectScriptName": "",
+			"objectScriptPackage": "50A3373643159EA82BC95AB86B4A5CE3",
+			"objectScriptName": "fieldHolder.js",
 			"persistentData": "",
 			"persistentKeyData":
 			{
@@ -749,7 +749,7 @@
 			"restitution": 0.30000001192092896,
 			"density": 1,
 			"surfaceType": "SurfaceType2",
-			"objectName": "",
+			"objectName": "Library",
 			"objectDescription": "",
 			"collisionType": "CB_Ground",
 			"templateId": "EA9612FB417F1BD3736C7BAA38FF482E",
@@ -760,8 +760,8 @@
 				"y": 0,
 				"z": 0
 			},
-			"objectScriptPackage": "00000000000000000000000000000000",
-			"objectScriptName": "",
+			"objectScriptPackage": "50A3373643159EA82BC95AB86B4A5CE3",
+			"objectScriptName": "deckHolder.js",
 			"persistentData": "",
 			"persistentKeyData":
 			{
@@ -818,7 +818,7 @@
 			"restitution": 0.30000001192092896,
 			"density": 1,
 			"surfaceType": "SurfaceType2",
-			"objectName": "",
+			"objectName": "Graveyard",
 			"objectDescription": "",
 			"collisionType": "CB_Ground",
 			"templateId": "EA9612FB417F1BD3736C7BAA38FF482E",
@@ -829,8 +829,8 @@
 				"y": 0,
 				"z": 0
 			},
-			"objectScriptPackage": "00000000000000000000000000000000",
-			"objectScriptName": "",
+			"objectScriptPackage": "50A3373643159EA82BC95AB86B4A5CE3",
+			"objectScriptName": "deckHolder.js",
 			"persistentData": "",
 			"persistentKeyData":
 			{
@@ -887,7 +887,7 @@
 			"restitution": 0.30000001192092896,
 			"density": 1,
 			"surfaceType": "SurfaceType2",
-			"objectName": "",
+			"objectName": "Exile",
 			"objectDescription": "",
 			"collisionType": "CB_Ground",
 			"templateId": "EA9612FB417F1BD3736C7BAA38FF482E",
@@ -898,8 +898,8 @@
 				"y": 0,
 				"z": 0
 			},
-			"objectScriptPackage": "00000000000000000000000000000000",
-			"objectScriptName": "",
+			"objectScriptPackage": "50A3373643159EA82BC95AB86B4A5CE3",
+			"objectScriptName": "deckHolder.js",
 			"persistentData": "",
 			"persistentKeyData":
 			{
@@ -967,8 +967,8 @@
 				"y": 0,
 				"z": 0
 			},
-			"objectScriptPackage": "00000000000000000000000000000000",
-			"objectScriptName": "",
+			"objectScriptPackage": "50A3373643159EA82BC95AB86B4A5CE3",
+			"objectScriptName": "fieldHolder.js",
 			"persistentData": "",
 			"persistentKeyData":
 			{
@@ -986,9 +986,9 @@
 			{
 				"rotation":
 				{
-					"x": -2.8289906595091452e-07,
+					"x": -2.8289903752920509e-07,
 					"y": 5.3257582521837321e-07,
-					"z": 0.00019947848340962082,
+					"z": 0.00019947846885770559,
 					"w": 1
 				},
 				"translation":
@@ -1025,7 +1025,7 @@
 			"restitution": 0.30000001192092896,
 			"density": 1,
 			"surfaceType": "SurfaceType2",
-			"objectName": "Deck",
+			"objectName": "Library",
 			"objectDescription": "",
 			"collisionType": "CB_Ground",
 			"templateId": "EA9612FB417F1BD3736C7BAA38FF482E",
@@ -1036,8 +1036,8 @@
 				"y": 0,
 				"z": 0
 			},
-			"objectScriptPackage": "00000000000000000000000000000000",
-			"objectScriptName": "",
+			"objectScriptPackage": "50A3373643159EA82BC95AB86B4A5CE3",
+			"objectScriptName": "deckHolder.js",
 			"persistentData": "",
 			"persistentKeyData":
 			{
@@ -1056,7 +1056,7 @@
 				"rotation":
 				{
 					"x": 2.6631420269040973e-07,
-					"y": 1.5170870426572947e-07,
+					"y": 1.5170866163316532e-07,
 					"z": -0.99999994039535522,
 					"w": 1.2278556823730469e-05
 				},
@@ -1094,7 +1094,7 @@
 			"restitution": 0.30000001192092896,
 			"density": 1,
 			"surfaceType": "SurfaceType2",
-			"objectName": "",
+			"objectName": "Commander",
 			"objectDescription": "",
 			"collisionType": "CB_Ground",
 			"templateId": "EA9612FB417F1BD3736C7BAA38FF482E",
@@ -1105,8 +1105,8 @@
 				"y": 0,
 				"z": 0
 			},
-			"objectScriptPackage": "00000000000000000000000000000000",
-			"objectScriptName": "",
+			"objectScriptPackage": "50A3373643159EA82BC95AB86B4A5CE3",
+			"objectScriptName": "deckHolder.js",
 			"persistentData": "",
 			"persistentKeyData":
 			{
@@ -1174,8 +1174,8 @@
 				"y": 0,
 				"z": 0
 			},
-			"objectScriptPackage": "00000000000000000000000000000000",
-			"objectScriptName": "",
+			"objectScriptPackage": "50A3373643159EA82BC95AB86B4A5CE3",
+			"objectScriptName": "fieldHolder.js",
 			"persistentData": "",
 			"persistentKeyData":
 			{
@@ -1232,7 +1232,7 @@
 			"restitution": 0.30000001192092896,
 			"density": 1,
 			"surfaceType": "SurfaceType2",
-			"objectName": "Deck",
+			"objectName": "Library",
 			"objectDescription": "",
 			"collisionType": "CB_Ground",
 			"templateId": "EA9612FB417F1BD3736C7BAA38FF482E",
@@ -1243,8 +1243,8 @@
 				"y": 0,
 				"z": 0
 			},
-			"objectScriptPackage": "00000000000000000000000000000000",
-			"objectScriptName": "",
+			"objectScriptPackage": "50A3373643159EA82BC95AB86B4A5CE3",
+			"objectScriptName": "deckHolder.js",
 			"persistentData": "",
 			"persistentKeyData":
 			{
@@ -1312,8 +1312,8 @@
 				"y": 0,
 				"z": 0
 			},
-			"objectScriptPackage": "00000000000000000000000000000000",
-			"objectScriptName": "",
+			"objectScriptPackage": "50A3373643159EA82BC95AB86B4A5CE3",
+			"objectScriptName": "deckHolder.js",
 			"persistentData": "",
 			"persistentKeyData":
 			{
@@ -1381,8 +1381,8 @@
 				"y": 0,
 				"z": 0
 			},
-			"objectScriptPackage": "00000000000000000000000000000000",
-			"objectScriptName": "",
+			"objectScriptPackage": "50A3373643159EA82BC95AB86B4A5CE3",
+			"objectScriptName": "deckHolder.js",
 			"persistentData": "",
 			"persistentKeyData":
 			{
@@ -1450,8 +1450,8 @@
 				"y": 0,
 				"z": 0
 			},
-			"objectScriptPackage": "00000000000000000000000000000000",
-			"objectScriptName": "",
+			"objectScriptPackage": "50A3373643159EA82BC95AB86B4A5CE3",
+			"objectScriptName": "deckHolder.js",
 			"persistentData": "",
 			"persistentKeyData":
 			{
@@ -1777,8 +1777,8 @@
 			{
 				"rotation":
 				{
-					"x": -5.676797627529595e-07,
-					"y": 1.0582758627752931e-12,
+					"x": -5.6767970590954064e-07,
+					"y": 1.0582757543550758e-12,
 					"z": -1.8642127770363004e-06,
 					"w": 1
 				},
@@ -1802,7 +1802,7 @@
 			"lazyLoad": false,
 			"containerTags": [],
 			"itemsJson": [
-				"{\"objectType\":\"Card\",\"transform\":{\"rotation\":{\"x\":0,\"y\":0,\"z\":0,\"w\":1},\"translation\":{\"x\":19.210088729858398,\"y\":-2.8434250354766846,\"z\":90.793876647949219},\"scale3D\":{\"x\":1,\"y\":1,\"z\":1}},\"simulatingPhysics\":true,\"atlasIndex\":0,\"frontTextureOverride\":\"\",\"inHand\":false,\"stackSerialization\":[],\"primaryColor\":{\"b\":255,\"g\":255,\"r\":255,\"a\":255},\"secondaryColor\":{\"b\":0,\"g\":0,\"r\":0,\"a\":255},\"metallic\":0,\"roughness\":1,\"friction\":0.69999998807907104,\"restitution\":0,\"density\":0.5,\"surfaceType\":\"SurfaceType4\",\"objectName\":\"\",\"objectDescription\":\"\",\"collisionType\":\"CB_Regular\",\"templateId\":\"229C19E743CB221DF3DA738F1DB2D10F\",\"shouldSnap\":true,\"previousPosition\":{\"x\":0,\"y\":0,\"z\":0},\"objectScriptPackage\":\"50A3373643159EA82BC95AB86B4A5CE3\",\"objectScriptName\":\"lifeCounter.js\",\"persistentData\":\"\",\"persistentKeyData\":{},\"uniqueId\":\"a86\",\"drawingLines\":[],\"objectTags\":[],\"objectGroupId\":-1,\"ownerIndex\":-1,\"bCanBeDamaged\":false}"
+				"{\"objectType\":\"Card\",\"transform\":{\"rotation\":{\"x\":0,\"y\":0,\"z\":0,\"w\":1},\"translation\":{\"x\":19.210088729858398,\"y\":-2.8434252738952637,\"z\":90.793876647949219},\"scale3D\":{\"x\":1,\"y\":1,\"z\":1}},\"simulatingPhysics\":true,\"atlasIndex\":0,\"frontTextureOverride\":\"\",\"inHand\":false,\"stackSerialization\":[],\"primaryColor\":{\"b\":255,\"g\":255,\"r\":255,\"a\":255},\"secondaryColor\":{\"b\":0,\"g\":0,\"r\":0,\"a\":255},\"metallic\":0,\"roughness\":1,\"friction\":0.69999998807907104,\"restitution\":0,\"density\":0.5,\"surfaceType\":\"SurfaceType4\",\"objectName\":\"\",\"objectDescription\":\"\",\"collisionType\":\"CB_Regular\",\"templateId\":\"229C19E743CB221DF3DA738F1DB2D10F\",\"shouldSnap\":true,\"previousPosition\":{\"x\":0,\"y\":0,\"z\":0},\"objectScriptPackage\":\"50A3373643159EA82BC95AB86B4A5CE3\",\"objectScriptName\":\"lifeCounter.js\",\"persistentData\":\"\",\"persistentKeyData\":{},\"uniqueId\":\"a86\",\"drawingLines\":[],\"objectTags\":[],\"objectGroupId\":-1,\"ownerIndex\":-1,\"bCanBeDamaged\":false}"
 			],
 			"primaryColor":
 			{
@@ -1854,7 +1854,7 @@
 			{
 				"rotation":
 				{
-					"x": -4.0711017845751485e-07,
+					"x": -4.0711009319238656e-07,
 					"y": 2.6675078856897017e-07,
 					"z": -0.0010673947399482131,
 					"w": 0.99999940395355225
@@ -2008,7 +2008,7 @@
 			{
 				"rotation":
 				{
-					"x": -2.897793294209805e-08,
+					"x": -2.8977931165741211e-08,
 					"y": 5.3263227073330199e-07,
 					"z": -2.1305288555595325e-06,
 					"w": 1
@@ -2391,7 +2391,7 @@
 			{
 				"rotation":
 				{
-					"x": -1.5110421713870892e-07,
+					"x": -1.511042029278542e-07,
 					"y": -4.7667623448433005e-07,
 					"z": -0.0010665957815945148,
 					"w": 0.99999940395355225
@@ -2691,8 +2691,8 @@
 			{
 				"rotation":
 				{
-					"x": -2.4651444080481255e-12,
-					"y": 2.4400151232839562e-08,
+					"x": -2.465143757526822e-12,
+					"y": 2.4400145903769044e-08,
 					"z": -0.99999994039535522,
 					"w": 0.00010102987289428711
 				},
@@ -2764,8 +2764,8 @@
 			{
 				"rotation":
 				{
-					"x": -2.3341248638758527e-12,
-					"y": 2.3103313040451212e-08,
+					"x": -2.3341244301949837e-12,
+					"y": 2.3103307711380694e-08,
 					"z": -0.99999994039535522,
 					"w": 0.00010102987289428711
 				},
@@ -2984,7 +2984,7 @@
 				"rotation":
 				{
 					"x": -7.9895210092217894e-07,
-					"y": -2.0980681370019738e-07,
+					"y": -2.0980677106763324e-07,
 					"z": 0.99999994039535522,
 					"w": 1.811981201171875e-05
 				},
@@ -3057,7 +3057,7 @@
 				"rotation":
 				{
 					"x": -5.3263227073330199e-07,
-					"y": -1.5047859847072687e-07,
+					"y": -1.5047858425987215e-07,
 					"z": 1,
 					"w": 4.7683707293799671e-07
 				},

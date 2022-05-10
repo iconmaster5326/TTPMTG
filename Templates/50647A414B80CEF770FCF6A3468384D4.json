@@ -67,7 +67,7 @@
 			"UseOverrides": true,
 			"SurfaceType": "Cardboard",
 			"UseCardModel": true,
-			"Indices": [ 0, 1 ]
+			"Indices": [ 0, 1, 2 ]
 		}
 	]
 }

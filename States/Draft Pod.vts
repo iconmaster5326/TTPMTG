@@ -64,7 +64,7 @@
 	},
 	"requiredPackages": [
 		{
-			"name": "Magic: The Gathering (Deckmaster)",
+			"name": "MTGTTP",
 			"guid": "50A3373643159EA82BC95AB86B4A5CE3"
 		},
 		{
@@ -139,8 +139,8 @@
 				"y": 0,
 				"z": 0
 			},
-			"objectScriptPackage": "00000000000000000000000000000000",
-			"objectScriptName": "",
+			"objectScriptPackage": "50A3373643159EA82BC95AB86B4A5CE3",
+			"objectScriptName": "fieldHolder.js",
 			"persistentData": "",
 			"persistentKeyData":
 			{
@@ -158,8 +158,8 @@
 			{
 				"rotation":
 				{
-					"x": -1.4719689429474291e-14,
-					"y": 4.5732484466043388e-09,
+					"x": -1.4719687735408396e-14,
+					"y": 4.573248002515129e-09,
 					"z": -1,
 					"w": 3.2186508178710938e-06
 				},
@@ -296,8 +296,8 @@
 			{
 				"rotation":
 				{
-					"x": -4.8724804573019309e-12,
-					"y": 3.158680428327898e-08,
+					"x": -4.8724795899401929e-12,
+					"y": 3.1586797177851622e-08,
 					"z": -0.99999994039535522,
 					"w": 0.00015425682067871094
 				},
@@ -415,8 +415,8 @@
 				"y": 0,
 				"z": 0
 			},
-			"objectScriptPackage": "00000000000000000000000000000000",
-			"objectScriptName": "",
+			"objectScriptPackage": "50A3373643159EA82BC95AB86B4A5CE3",
+			"objectScriptName": "fieldHolder.js",
 			"persistentData": "",
 			"persistentKeyData":
 			{
@@ -435,8 +435,8 @@
 				"rotation":
 				{
 					"x": -4.5732506670503881e-09,
-					"y": -1.2595661140609934e-14,
-					"z": 2.754203023869195e-06,
+					"y": -1.259565944654404e-14,
+					"z": 2.7542027964955196e-06,
 					"w": 1
 				},
 				"translation":
@@ -505,7 +505,7 @@
 				{
 					"x": 2.6631533955878695e-07,
 					"y": 2.6631687433109619e-07,
-					"z": 2.8419187856343342e-06,
+					"z": 2.8419185582606588e-06,
 					"w": 1
 				},
 				"translation":
@@ -691,8 +691,8 @@
 				"y": 0,
 				"z": 0
 			},
-			"objectScriptPackage": "00000000000000000000000000000000",
-			"objectScriptName": "",
+			"objectScriptPackage": "50A3373643159EA82BC95AB86B4A5CE3",
+			"objectScriptName": "fieldHolder.js",
 			"persistentData": "",
 			"persistentKeyData":
 			{
@@ -711,8 +711,8 @@
 				"rotation":
 				{
 					"x": -4.5732506670503881e-09,
-					"y": -1.2595661140609934e-14,
-					"z": 2.754203023869195e-06,
+					"y": -1.259565944654404e-14,
+					"z": 2.7542027964955196e-06,
 					"w": 1
 				},
 				"translation":
@@ -781,7 +781,7 @@
 				{
 					"x": 2.6631533955878695e-07,
 					"y": 2.6631687433109619e-07,
-					"z": 2.8419187856343342e-06,
+					"z": 2.8419185582606588e-06,
 					"w": 1
 				},
 				"translation":
@@ -967,8 +967,8 @@
 				"y": 0,
 				"z": 0
 			},
-			"objectScriptPackage": "00000000000000000000000000000000",
-			"objectScriptName": "",
+			"objectScriptPackage": "50A3373643159EA82BC95AB86B4A5CE3",
+			"objectScriptName": "fieldHolder.js",
 			"persistentData": "",
 			"persistentKeyData":
 			{
@@ -987,8 +987,8 @@
 				"rotation":
 				{
 					"x": -4.5732506670503881e-09,
-					"y": -1.3413424864371862e-14,
-					"z": 2.9330176403163932e-06,
+					"y": -1.3413424017338915e-14,
+					"z": 2.9330174129427178e-06,
 					"w": 1
 				},
 				"translation":
@@ -1125,8 +1125,8 @@
 				"rotation":
 				{
 					"x": -3.158683270498841e-08,
-					"y": -4.8615963685327834e-12,
-					"z": 0.00015391211491078138,
+					"y": -4.8615959348519144e-12,
+					"z": 0.00015391210035886616,
 					"w": 1
 				},
 				"translation":
@@ -1243,8 +1243,8 @@
 				"y": 0,
 				"z": 0
 			},
-			"objectScriptPackage": "00000000000000000000000000000000",
-			"objectScriptName": "",
+			"objectScriptPackage": "50A3373643159EA82BC95AB86B4A5CE3",
+			"objectScriptName": "fieldHolder.js",
 			"persistentData": "",
 			"persistentKeyData":
 			{
@@ -1263,8 +1263,8 @@
 				"rotation":
 				{
 					"x": -4.5732506670503881e-09,
-					"y": -1.3413424864371862e-14,
-					"z": 2.9330176403163932e-06,
+					"y": -1.3413424017338915e-14,
+					"z": 2.9330174129427178e-06,
 					"w": 1
 				},
 				"translation":
@@ -1401,8 +1401,8 @@
 				"rotation":
 				{
 					"x": -3.158683270498841e-08,
-					"y": -4.8615963685327834e-12,
-					"z": 0.00015391211491078138,
+					"y": -4.8615959348519144e-12,
+					"z": 0.00015391210035886616,
 					"w": 1
 				},
 				"translation":
@@ -1519,8 +1519,8 @@
 				"y": 0,
 				"z": 0
 			},
-			"objectScriptPackage": "00000000000000000000000000000000",
-			"objectScriptName": "",
+			"objectScriptPackage": "50A3373643159EA82BC95AB86B4A5CE3",
+			"objectScriptName": "fieldHolder.js",
 			"persistentData": "",
 			"persistentKeyData":
 			{
@@ -1539,7 +1539,7 @@
 				"rotation":
 				{
 					"x": 7.9894812188285869e-07,
-					"y": 7.3322624416505278e-08,
+					"y": 7.332261731107792e-08,
 					"z": -1,
 					"w": 3.2186508178710938e-06
 				},
@@ -1677,7 +1677,7 @@
 				"rotation":
 				{
 					"x": 7.9893095517036272e-07,
-					"y": 1.1268774358086375e-07,
+					"y": 1.1268772937000904e-07,
 					"z": -0.99999994039535522,
 					"w": 0.00015425682067871094
 				},
@@ -1795,8 +1795,8 @@
 				"y": 0,
 				"z": 0
 			},
-			"objectScriptPackage": "00000000000000000000000000000000",
-			"objectScriptName": "",
+			"objectScriptPackage": "50A3373643159EA82BC95AB86B4A5CE3",
+			"objectScriptName": "fieldHolder.js",
 			"persistentData": "",
 			"persistentKeyData":
 			{
@@ -1814,8 +1814,8 @@
 			{
 				"rotation":
 				{
-					"x": -1.4719689429474291e-14,
-					"y": 4.5732484466043388e-09,
+					"x": -1.4719687735408396e-14,
+					"y": 4.573248002515129e-09,
 					"z": -1,
 					"w": 3.2186508178710938e-06
 				},
@@ -1952,8 +1952,8 @@
 			{
 				"rotation":
 				{
-					"x": -4.8724804573019309e-12,
-					"y": 3.158680428327898e-08,
+					"x": -4.8724795899401929e-12,
+					"y": 3.1586797177851622e-08,
 					"z": -0.99999994039535522,
 					"w": 0.00015425682067871094
 				},
@@ -2030,7 +2030,7 @@
 				{
 					"x": 19.829177856445312,
 					"y": 103.3531494140625,
-					"z": 0.33333009481430054
+					"z": 0.33333012461662292
 				},
 				"scale3D":
 				{
@@ -2071,8 +2071,8 @@
 				"y": 0,
 				"z": 0
 			},
-			"objectScriptPackage": "00000000000000000000000000000000",
-			"objectScriptName": "",
+			"objectScriptPackage": "50A3373643159EA82BC95AB86B4A5CE3",
+			"objectScriptName": "fieldHolder.js",
 			"persistentData": "",
 			"persistentKeyData":
 			{
@@ -2090,8 +2090,8 @@
 			{
 				"rotation":
 				{
-					"x": -1.4719689429474291e-14,
-					"y": 4.5732484466043388e-09,
+					"x": -1.4719687735408396e-14,
+					"y": 4.573248002515129e-09,
 					"z": -1,
 					"w": 3.2186508178710938e-06
 				},
@@ -2228,8 +2228,8 @@
 			{
 				"rotation":
 				{
-					"x": -4.8724804573019309e-12,
-					"y": 3.158680428327898e-08,
+					"x": -4.8724795899401929e-12,
+					"y": 3.1586797177851622e-08,
 					"z": -0.99999994039535522,
 					"w": 0.00015425682067871094
 				},
@@ -2322,7 +2322,7 @@
 			"lazyLoad": false,
 			"containerTags": [],
 			"itemsJson": [
-				"{\"objectType\":\"Card\",\"transform\":{\"rotation\":{\"x\":0,\"y\":-0,\"z\":0,\"w\":1},\"translation\":{\"x\":8.0703401565551758,\"y\":149.93180847167969,\"z\":5.9404559135437012},\"scale3D\":{\"x\":1,\"y\":1,\"z\":1}},\"simulatingPhysics\":true,\"atlasIndex\":0,\"frontTextureOverride\":\"https://c1.scryfall.com/file/scryfall-cards/large/front/2/e/2ef2c956-cf03-462c-8981-ae80edfc0c5a.jpg?1649356454\",\"inHand\":false,\"stackSerialization\":[],\"primaryColor\":{\"b\":255,\"g\":255,\"r\":255,\"a\":255},\"secondaryColor\":{\"b\":0,\"g\":0,\"r\":0,\"a\":255},\"metallic\":0,\"roughness\":1,\"friction\":0.69999998807907104,\"restitution\":0,\"density\":0.5,\"surfaceType\":\"SurfaceType4\",\"objectName\":\"Island\",\"objectDescription\":\"\",\"collisionType\":\"CB_Regular\",\"templateId\":\"259D66CE415FF02DA2381FBCDB053E1B\",\"shouldSnap\":true,\"previousPosition\":{\"x\":0,\"y\":0,\"z\":0},\"objectScriptPackage\":\"50A3373643159EA82BC95AB86B4A5CE3\",\"objectScriptName\":\"card.js\",\"persistentData\":\"\",\"persistentKeyData\":{\"0\":\"{\\\"id\\\":\\\"2ef2c956-cf03-462c-8981-ae80edfc0c5a\\\"}\"},\"uniqueId\":\"72q\",\"drawingLines\":[],\"objectTags\":[],\"objectGroupId\":-1,\"ownerIndex\":-1,\"bCanBeDamaged\":false}"
+				"{\"objectType\":\"Card\",\"transform\":{\"rotation\":{\"x\":0,\"y\":0,\"z\":0,\"w\":1},\"translation\":{\"x\":8.0703401565551758,\"y\":149.93180847167969,\"z\":5.9404559135437012},\"scale3D\":{\"x\":1,\"y\":1,\"z\":1}},\"simulatingPhysics\":true,\"atlasIndex\":0,\"frontTextureOverride\":\"https://c1.scryfall.com/file/scryfall-cards/large/front/2/e/2ef2c956-cf03-462c-8981-ae80edfc0c5a.jpg?1649356454\",\"inHand\":false,\"stackSerialization\":[],\"primaryColor\":{\"b\":255,\"g\":255,\"r\":255,\"a\":255},\"secondaryColor\":{\"b\":0,\"g\":0,\"r\":0,\"a\":255},\"metallic\":0,\"roughness\":1,\"friction\":0.69999998807907104,\"restitution\":0,\"density\":0.5,\"surfaceType\":\"SurfaceType4\",\"objectName\":\"\",\"objectDescription\":\"\",\"collisionType\":\"CB_Regular\",\"templateId\":\"259D66CE415FF02DA2381FBCDB053E1B\",\"shouldSnap\":true,\"previousPosition\":{\"x\":0,\"y\":0,\"z\":0},\"objectScriptPackage\":\"50A3373643159EA82BC95AB86B4A5CE3\",\"objectScriptName\":\"card.js\",\"persistentData\":\"\",\"persistentKeyData\":{\"0\":\"{\\\"id\\\":\\\"2ef2c956-cf03-462c-8981-ae80edfc0c5a\\\"}\"},\"uniqueId\":\"72q\",\"drawingLines\":[],\"objectTags\":[],\"objectGroupId\":-1,\"ownerIndex\":-1,\"bCanBeDamaged\":false}"
 			],
 			"primaryColor":
 			{
@@ -2374,9 +2374,9 @@
 			{
 				"rotation":
 				{
-					"x": -5.1378393095546926e-08,
+					"x": -5.1378389542833247e-08,
 					"y": -2.3841863594498136e-07,
-					"z": 1.5922408920232556e-06,
+					"z": 1.5922407783364179e-06,
 					"w": 1
 				},
 				"translation":
@@ -2399,7 +2399,7 @@
 			"lazyLoad": false,
 			"containerTags": [],
 			"itemsJson": [
-				"{\"objectType\":\"Card\",\"transform\":{\"rotation\":{\"x\":0,\"y\":-0,\"z\":0,\"w\":1},\"translation\":{\"x\":-0.36694717407226562,\"y\":150.57707214355469,\"z\":5.9404582977294922},\"scale3D\":{\"x\":1,\"y\":1,\"z\":1}},\"simulatingPhysics\":true,\"atlasIndex\":0,\"frontTextureOverride\":\"https://c1.scryfall.com/file/scryfall-cards/large/front/b/0/b0175a2a-db46-4d25-ab8e-feca7e565b8d.jpg?1649356569\",\"inHand\":false,\"stackSerialization\":[],\"primaryColor\":{\"b\":255,\"g\":255,\"r\":255,\"a\":255},\"secondaryColor\":{\"b\":0,\"g\":0,\"r\":0,\"a\":255},\"metallic\":0,\"roughness\":1,\"friction\":0.69999998807907104,\"restitution\":0,\"density\":0.5,\"surfaceType\":\"SurfaceType4\",\"objectName\":\"Swamp\",\"objectDescription\":\"\",\"collisionType\":\"CB_Regular\",\"templateId\":\"259D66CE415FF02DA2381FBCDB053E1B\",\"shouldSnap\":true,\"previousPosition\":{\"x\":0,\"y\":0,\"z\":0},\"objectScriptPackage\":\"50A3373643159EA82BC95AB86B4A5CE3\",\"objectScriptName\":\"card.js\",\"persistentData\":\"\",\"persistentKeyData\":{\"0\":\"{\\\"id\\\":\\\"b0175a2a-db46-4d25-ab8e-feca7e565b8d\\\"}\"},\"uniqueId\":\"5b8\",\"drawingLines\":[],\"objectTags\":[],\"objectGroupId\":-1,\"ownerIndex\":-1,\"bCanBeDamaged\":false}"
+				"{\"objectType\":\"Card\",\"transform\":{\"rotation\":{\"x\":0,\"y\":0,\"z\":0,\"w\":1},\"translation\":{\"x\":-0.36694717407226562,\"y\":150.57707214355469,\"z\":5.9404582977294922},\"scale3D\":{\"x\":1,\"y\":1,\"z\":1}},\"simulatingPhysics\":true,\"atlasIndex\":0,\"frontTextureOverride\":\"https://c1.scryfall.com/file/scryfall-cards/large/front/b/0/b0175a2a-db46-4d25-ab8e-feca7e565b8d.jpg?1649356569\",\"inHand\":false,\"stackSerialization\":[],\"primaryColor\":{\"b\":255,\"g\":255,\"r\":255,\"a\":255},\"secondaryColor\":{\"b\":0,\"g\":0,\"r\":0,\"a\":255},\"metallic\":0,\"roughness\":1,\"friction\":0.69999998807907104,\"restitution\":0,\"density\":0.5,\"surfaceType\":\"SurfaceType4\",\"objectName\":\"\",\"objectDescription\":\"\",\"collisionType\":\"CB_Regular\",\"templateId\":\"259D66CE415FF02DA2381FBCDB053E1B\",\"shouldSnap\":true,\"previousPosition\":{\"x\":0,\"y\":0,\"z\":0},\"objectScriptPackage\":\"50A3373643159EA82BC95AB86B4A5CE3\",\"objectScriptName\":\"card.js\",\"persistentData\":\"\",\"persistentKeyData\":{\"0\":\"{\\\"id\\\":\\\"b0175a2a-db46-4d25-ab8e-feca7e565b8d\\\"}\"},\"uniqueId\":\"5b8\",\"drawingLines\":[],\"objectTags\":[],\"objectGroupId\":-1,\"ownerIndex\":-1,\"bCanBeDamaged\":false}"
 			],
 			"primaryColor":
 			{
@@ -2453,7 +2453,7 @@
 				{
 					"x": 2.6631610694494157e-07,
 					"y": 4.9313748614124298e-13,
-					"z": 1.8516998352424707e-06,
+					"z": 1.851699721555633e-06,
 					"w": 1
 				},
 				"translation":
@@ -2476,7 +2476,7 @@
 			"lazyLoad": false,
 			"containerTags": [],
 			"itemsJson": [
-				"{\"objectType\":\"Card\",\"transform\":{\"rotation\":{\"x\":0,\"y\":-0,\"z\":0,\"w\":1},\"translation\":{\"x\":-8.4048795700073242,\"y\":150.81692504882812,\"z\":5.9404597282409668},\"scale3D\":{\"x\":1,\"y\":1,\"z\":1}},\"simulatingPhysics\":true,\"atlasIndex\":0,\"frontTextureOverride\":\"https://c1.scryfall.com/file/scryfall-cards/large/front/f/a/fac247df-aa19-4627-8d65-6ddf5e7e5c8c.jpg?1649356611\",\"inHand\":false,\"stackSerialization\":[],\"primaryColor\":{\"b\":255,\"g\":255,\"r\":255,\"a\":255},\"secondaryColor\":{\"b\":0,\"g\":0,\"r\":0,\"a\":255},\"metallic\":0,\"roughness\":1,\"friction\":0.69999998807907104,\"restitution\":0,\"density\":0.5,\"surfaceType\":\"SurfaceType4\",\"objectName\":\"Mountain\",\"objectDescription\":\"\",\"collisionType\":\"CB_Regular\",\"templateId\":\"259D66CE415FF02DA2381FBCDB053E1B\",\"shouldSnap\":true,\"previousPosition\":{\"x\":0,\"y\":0,\"z\":0},\"objectScriptPackage\":\"50A3373643159EA82BC95AB86B4A5CE3\",\"objectScriptName\":\"card.js\",\"persistentData\":\"\",\"persistentKeyData\":{\"0\":\"{\\\"id\\\":\\\"fac247df-aa19-4627-8d65-6ddf5e7e5c8c\\\"}\"},\"uniqueId\":\"0eg\",\"drawingLines\":[],\"objectTags\":[],\"objectGroupId\":-1,\"ownerIndex\":-1,\"bCanBeDamaged\":false}"
+				"{\"objectType\":\"Card\",\"transform\":{\"rotation\":{\"x\":0,\"y\":0,\"z\":0,\"w\":1},\"translation\":{\"x\":-8.4048795700073242,\"y\":150.81692504882812,\"z\":5.9404597282409668},\"scale3D\":{\"x\":1,\"y\":1,\"z\":1}},\"simulatingPhysics\":true,\"atlasIndex\":0,\"frontTextureOverride\":\"https://c1.scryfall.com/file/scryfall-cards/large/front/f/a/fac247df-aa19-4627-8d65-6ddf5e7e5c8c.jpg?1649356611\",\"inHand\":false,\"stackSerialization\":[],\"primaryColor\":{\"b\":255,\"g\":255,\"r\":255,\"a\":255},\"secondaryColor\":{\"b\":0,\"g\":0,\"r\":0,\"a\":255},\"metallic\":0,\"roughness\":1,\"friction\":0.69999998807907104,\"restitution\":0,\"density\":0.5,\"surfaceType\":\"SurfaceType4\",\"objectName\":\"\",\"objectDescription\":\"\",\"collisionType\":\"CB_Regular\",\"templateId\":\"259D66CE415FF02DA2381FBCDB053E1B\",\"shouldSnap\":true,\"previousPosition\":{\"x\":0,\"y\":0,\"z\":0},\"objectScriptPackage\":\"50A3373643159EA82BC95AB86B4A5CE3\",\"objectScriptName\":\"card.js\",\"persistentData\":\"\",\"persistentKeyData\":{\"0\":\"{\\\"id\\\":\\\"fac247df-aa19-4627-8d65-6ddf5e7e5c8c\\\"}\"},\"uniqueId\":\"0eg\",\"drawingLines\":[],\"objectTags\":[],\"objectGroupId\":-1,\"ownerIndex\":-1,\"bCanBeDamaged\":false}"
 			],
 			"primaryColor":
 			{
@@ -2530,7 +2530,7 @@
 				{
 					"x": 2.6631622063177929e-07,
 					"y": -5.9604168711757666e-08,
-					"z": 1.7797912050809828e-06,
+					"z": 1.779791091394145e-06,
 					"w": 1
 				},
 				"translation":
@@ -2553,7 +2553,7 @@
 			"lazyLoad": false,
 			"containerTags": [],
 			"itemsJson": [
-				"{\"objectType\":\"Card\",\"transform\":{\"rotation\":{\"x\":0,\"y\":-0,\"z\":0,\"w\":1},\"translation\":{\"x\":-16.439723968505859,\"y\":151.20585632324219,\"z\":5.940460205078125},\"scale3D\":{\"x\":1,\"y\":1,\"z\":1}},\"simulatingPhysics\":true,\"atlasIndex\":0,\"frontTextureOverride\":\"https://c1.scryfall.com/file/scryfall-cards/large/front/c/0/c086cb5e-3146-4a41-a471-fcbbf8fa4e09.jpg?1649356648\",\"inHand\":false,\"stackSerialization\":[],\"primaryColor\":{\"b\":255,\"g\":255,\"r\":255,\"a\":255},\"secondaryColor\":{\"b\":0,\"g\":0,\"r\":0,\"a\":255},\"metallic\":0,\"roughness\":1,\"friction\":0.69999998807907104,\"restitution\":0,\"density\":0.5,\"surfaceType\":\"SurfaceType4\",\"objectName\":\"Forest\",\"objectDescription\":\"\",\"collisionType\":\"CB_Regular\",\"templateId\":\"259D66CE415FF02DA2381FBCDB053E1B\",\"shouldSnap\":true,\"previousPosition\":{\"x\":0,\"y\":0,\"z\":0},\"objectScriptPackage\":\"50A3373643159EA82BC95AB86B4A5CE3\",\"objectScriptName\":\"card.js\",\"persistentData\":\"\",\"persistentKeyData\":{\"0\":\"{\\\"id\\\":\\\"c086cb5e-3146-4a41-a471-fcbbf8fa4e09\\\"}\"},\"uniqueId\":\"six\",\"drawingLines\":[],\"objectTags\":[],\"objectGroupId\":-1,\"ownerIndex\":-1,\"bCanBeDamaged\":false}"
+				"{\"objectType\":\"Card\",\"transform\":{\"rotation\":{\"x\":0,\"y\":0,\"z\":0,\"w\":1},\"translation\":{\"x\":-16.439725875854492,\"y\":151.20585632324219,\"z\":5.940460205078125},\"scale3D\":{\"x\":1,\"y\":1,\"z\":1}},\"simulatingPhysics\":true,\"atlasIndex\":0,\"frontTextureOverride\":\"https://c1.scryfall.com/file/scryfall-cards/large/front/c/0/c086cb5e-3146-4a41-a471-fcbbf8fa4e09.jpg?1649356648\",\"inHand\":false,\"stackSerialization\":[],\"primaryColor\":{\"b\":255,\"g\":255,\"r\":255,\"a\":255},\"secondaryColor\":{\"b\":0,\"g\":0,\"r\":0,\"a\":255},\"metallic\":0,\"roughness\":1,\"friction\":0.69999998807907104,\"restitution\":0,\"density\":0.5,\"surfaceType\":\"SurfaceType4\",\"objectName\":\"\",\"objectDescription\":\"\",\"collisionType\":\"CB_Regular\",\"templateId\":\"259D66CE415FF02DA2381FBCDB053E1B\",\"shouldSnap\":true,\"previousPosition\":{\"x\":0,\"y\":0,\"z\":0},\"objectScriptPackage\":\"50A3373643159EA82BC95AB86B4A5CE3\",\"objectScriptName\":\"card.js\",\"persistentData\":\"\",\"persistentKeyData\":{\"0\":\"{\\\"id\\\":\\\"c086cb5e-3146-4a41-a471-fcbbf8fa4e09\\\"}\"},\"uniqueId\":\"six\",\"drawingLines\":[],\"objectTags\":[],\"objectGroupId\":-1,\"ownerIndex\":-1,\"bCanBeDamaged\":false}"
 			],
 			"primaryColor":
 			{
@@ -2630,7 +2630,7 @@
 			"lazyLoad": false,
 			"containerTags": [],
 			"itemsJson": [
-				"{\"objectType\":\"Card\",\"transform\":{\"rotation\":{\"x\":0,\"y\":0,\"z\":0,\"w\":1},\"translation\":{\"x\":-19.602703094482422,\"y\":-181.91519165039062,\"z\":2.8177697658538818},\"scale3D\":{\"x\":1,\"y\":1,\"z\":1}},\"simulatingPhysics\":true,\"atlasIndex\":0,\"frontTextureOverride\":\"\",\"inHand\":false,\"stackSerialization\":[],\"primaryColor\":{\"b\":255,\"g\":255,\"r\":255,\"a\":255},\"secondaryColor\":{\"b\":255,\"g\":255,\"r\":255,\"a\":255},\"metallic\":0,\"roughness\":1,\"friction\":0.69999998807907104,\"restitution\":0,\"density\":0.5,\"surfaceType\":\"SurfaceType4\",\"objectName\":\"\",\"objectDescription\":\"\",\"collisionType\":\"CB_Regular\",\"templateId\":\"C206FD7245A57A8BB3229096365AA7BF\",\"shouldSnap\":true,\"previousPosition\":{\"x\":0,\"y\":0,\"z\":0},\"objectScriptPackage\":\"50A3373643159EA82BC95AB86B4A5CE3\",\"objectScriptName\":\"counter.js\",\"persistentData\":\"\",\"persistentKeyData\":{},\"uniqueId\":\"g61\",\"drawingLines\":[],\"objectTags\":[],\"objectGroupId\":-1,\"ownerIndex\":-1,\"bCanBeDamaged\":false}"
+				"{\"objectType\":\"Card\",\"transform\":{\"rotation\":{\"x\":0,\"y\":0,\"z\":0,\"w\":1},\"translation\":{\"x\":-19.602705001831055,\"y\":-181.91519165039062,\"z\":2.8177697658538818},\"scale3D\":{\"x\":1,\"y\":1,\"z\":1}},\"simulatingPhysics\":true,\"atlasIndex\":0,\"frontTextureOverride\":\"\",\"inHand\":false,\"stackSerialization\":[],\"primaryColor\":{\"b\":255,\"g\":255,\"r\":255,\"a\":255},\"secondaryColor\":{\"b\":255,\"g\":255,\"r\":255,\"a\":255},\"metallic\":0,\"roughness\":1,\"friction\":0.69999998807907104,\"restitution\":0,\"density\":0.5,\"surfaceType\":\"SurfaceType4\",\"objectName\":\"\",\"objectDescription\":\"\",\"collisionType\":\"CB_Regular\",\"templateId\":\"C206FD7245A57A8BB3229096365AA7BF\",\"shouldSnap\":true,\"previousPosition\":{\"x\":0,\"y\":0,\"z\":0},\"objectScriptPackage\":\"50A3373643159EA82BC95AB86B4A5CE3\",\"objectScriptName\":\"counter.js\",\"persistentData\":\"\",\"persistentKeyData\":{},\"uniqueId\":\"g61\",\"drawingLines\":[],\"objectTags\":[],\"objectGroupId\":-1,\"ownerIndex\":-1,\"bCanBeDamaged\":false}"
 			],
 			"primaryColor":
 			{
@@ -2768,7 +2768,7 @@
 				{
 					"x": 5.6240482330322266,
 					"y": -189.99819946289062,
-					"z": 1.1279885768890381
+					"z": 1.1279886960983276
 				},
 				"scale3D":
 				{
@@ -2913,8 +2913,8 @@
 			{
 				"rotation":
 				{
-					"x": -5.676797627529595e-07,
-					"y": 1.0582758627752931e-12,
+					"x": -5.6767970590954064e-07,
+					"y": 1.0582757543550758e-12,
 					"z": -1.8642127770363004e-06,
 					"w": 1
 				},
@@ -2938,7 +2938,7 @@
 			"lazyLoad": false,
 			"containerTags": [],
 			"itemsJson": [
-				"{\"objectType\":\"Card\",\"transform\":{\"rotation\":{\"x\":0,\"y\":0,\"z\":0,\"w\":1},\"translation\":{\"x\":15.141364097595215,\"y\":-185.53526306152344,\"z\":10.377766609191895},\"scale3D\":{\"x\":1,\"y\":1,\"z\":1}},\"simulatingPhysics\":true,\"atlasIndex\":0,\"frontTextureOverride\":\"\",\"inHand\":false,\"stackSerialization\":[],\"primaryColor\":{\"b\":255,\"g\":255,\"r\":255,\"a\":255},\"secondaryColor\":{\"b\":0,\"g\":0,\"r\":0,\"a\":255},\"metallic\":0,\"roughness\":1,\"friction\":0.69999998807907104,\"restitution\":0,\"density\":0.5,\"surfaceType\":\"SurfaceType4\",\"objectName\":\"\",\"objectDescription\":\"\",\"collisionType\":\"CB_Regular\",\"templateId\":\"229C19E743CB221DF3DA738F1DB2D10F\",\"shouldSnap\":true,\"previousPosition\":{\"x\":0,\"y\":0,\"z\":0},\"objectScriptPackage\":\"50A3373643159EA82BC95AB86B4A5CE3\",\"objectScriptName\":\"lifeCounter.js\",\"persistentData\":\"\",\"persistentKeyData\":{},\"uniqueId\":\"ng2\",\"drawingLines\":[],\"objectTags\":[],\"objectGroupId\":-1,\"ownerIndex\":-1,\"bCanBeDamaged\":false}"
+				"{\"objectType\":\"Card\",\"transform\":{\"rotation\":{\"x\":0,\"y\":0,\"z\":0,\"w\":1},\"translation\":{\"x\":15.141364097595215,\"y\":-185.53526306152344,\"z\":10.377767562866211},\"scale3D\":{\"x\":1,\"y\":1,\"z\":1}},\"simulatingPhysics\":true,\"atlasIndex\":0,\"frontTextureOverride\":\"\",\"inHand\":false,\"stackSerialization\":[],\"primaryColor\":{\"b\":255,\"g\":255,\"r\":255,\"a\":255},\"secondaryColor\":{\"b\":0,\"g\":0,\"r\":0,\"a\":255},\"metallic\":0,\"roughness\":1,\"friction\":0.69999998807907104,\"restitution\":0,\"density\":0.5,\"surfaceType\":\"SurfaceType4\",\"objectName\":\"\",\"objectDescription\":\"\",\"collisionType\":\"CB_Regular\",\"templateId\":\"229C19E743CB221DF3DA738F1DB2D10F\",\"shouldSnap\":true,\"previousPosition\":{\"x\":0,\"y\":0,\"z\":0},\"objectScriptPackage\":\"50A3373643159EA82BC95AB86B4A5CE3\",\"objectScriptName\":\"lifeCounter.js\",\"persistentData\":\"\",\"persistentKeyData\":{},\"uniqueId\":\"ng2\",\"drawingLines\":[],\"objectTags\":[],\"objectGroupId\":-1,\"ownerIndex\":-1,\"bCanBeDamaged\":false}"
 			],
 			"primaryColor":
 			{
@@ -3015,7 +3015,7 @@
 			"lazyLoad": false,
 			"containerTags": [],
 			"itemsJson": [
-				"{\"objectType\":\"Card\",\"transform\":{\"rotation\":{\"x\":0,\"y\":0,\"z\":0,\"w\":1},\"translation\":{\"x\":-5.9081830978393555,\"y\":-189.80807495117188,\"z\":2.8177692890167236},\"scale3D\":{\"x\":1,\"y\":1,\"z\":1}},\"simulatingPhysics\":true,\"atlasIndex\":0,\"frontTextureOverride\":\"\",\"inHand\":false,\"stackSerialization\":[],\"primaryColor\":{\"b\":255,\"g\":255,\"r\":255,\"a\":255},\"secondaryColor\":{\"b\":0,\"g\":0,\"r\":0,\"a\":255},\"metallic\":0,\"roughness\":1,\"friction\":0.69999998807907104,\"restitution\":0,\"density\":0.5,\"surfaceType\":\"SurfaceType4\",\"objectName\":\"\",\"objectDescription\":\"\",\"collisionType\":\"CB_Regular\",\"templateId\":\"5B5974024E8E2911301F2BBDEDF9378F\",\"shouldSnap\":true,\"previousPosition\":{\"x\":0,\"y\":0,\"z\":0},\"objectScriptPackage\":\"50A3373643159EA82BC95AB86B4A5CE3\",\"objectScriptName\":\"counter.js\",\"persistentData\":\"\",\"persistentKeyData\":{},\"uniqueId\":\"xtw\",\"drawingLines\":[],\"objectTags\":[],\"objectGroupId\":-1,\"ownerIndex\":-1,\"bCanBeDamaged\":false}"
+				"{\"objectType\":\"Card\",\"transform\":{\"rotation\":{\"x\":0,\"y\":0,\"z\":0,\"w\":1},\"translation\":{\"x\":-5.9081835746765137,\"y\":-189.80809020996094,\"z\":2.8177692890167236},\"scale3D\":{\"x\":1,\"y\":1,\"z\":1}},\"simulatingPhysics\":true,\"atlasIndex\":0,\"frontTextureOverride\":\"\",\"inHand\":false,\"stackSerialization\":[],\"primaryColor\":{\"b\":255,\"g\":255,\"r\":255,\"a\":255},\"secondaryColor\":{\"b\":0,\"g\":0,\"r\":0,\"a\":255},\"metallic\":0,\"roughness\":1,\"friction\":0.69999998807907104,\"restitution\":0,\"density\":0.5,\"surfaceType\":\"SurfaceType4\",\"objectName\":\"\",\"objectDescription\":\"\",\"collisionType\":\"CB_Regular\",\"templateId\":\"5B5974024E8E2911301F2BBDEDF9378F\",\"shouldSnap\":true,\"previousPosition\":{\"x\":0,\"y\":0,\"z\":0},\"objectScriptPackage\":\"50A3373643159EA82BC95AB86B4A5CE3\",\"objectScriptName\":\"counter.js\",\"persistentData\":\"\",\"persistentKeyData\":{},\"uniqueId\":\"xtw\",\"drawingLines\":[],\"objectTags\":[],\"objectGroupId\":-1,\"ownerIndex\":-1,\"bCanBeDamaged\":false}"
 			],
 			"primaryColor":
 			{
@@ -3144,7 +3144,7 @@
 			{
 				"rotation":
 				{
-					"x": -2.897793294209805e-08,
+					"x": -2.8977931165741211e-08,
 					"y": 5.3263227073330199e-07,
 					"z": -2.1305288555595325e-06,
 					"w": 1
@@ -3219,7 +3219,7 @@
 			{
 				"rotation":
 				{
-					"x": -1.331621568567698e-08,
+					"x": -1.331621479749856e-08,
 					"y": 7.9894903137756046e-07,
 					"z": -4.9002162995748222e-05,
 					"w": 1
@@ -3382,7 +3382,7 @@
 				{
 					"x": -12.981697082519531,
 					"y": -189.81045532226562,
-					"z": 1.1279885768890381
+					"z": 1.1279886960983276
 				},
 				"scale3D":
 				{
@@ -3398,7 +3398,7 @@
 			"lazyLoad": false,
 			"containerTags": [],
 			"itemsJson": [
-				"{\"objectType\":\"Card\",\"transform\":{\"rotation\":{\"x\":0,\"y\":0,\"z\":0,\"w\":1},\"translation\":{\"x\":-13.009897232055664,\"y\":-189.81039428710938,\"z\":2.8177700042724609},\"scale3D\":{\"x\":1,\"y\":1,\"z\":1}},\"simulatingPhysics\":true,\"atlasIndex\":0,\"frontTextureOverride\":\"\",\"inHand\":false,\"stackSerialization\":[],\"primaryColor\":{\"b\":255,\"g\":255,\"r\":255,\"a\":255},\"secondaryColor\":{\"b\":0,\"g\":0,\"r\":0,\"a\":255},\"metallic\":0,\"roughness\":1,\"friction\":0.69999998807907104,\"restitution\":0,\"density\":0.5,\"surfaceType\":\"SurfaceType4\",\"objectName\":\"\",\"objectDescription\":\"\",\"collisionType\":\"CB_Regular\",\"templateId\":\"50C5C0A747AF2AE89C8609A61502E59A\",\"shouldSnap\":true,\"previousPosition\":{\"x\":0,\"y\":0,\"z\":0},\"objectScriptPackage\":\"50A3373643159EA82BC95AB86B4A5CE3\",\"objectScriptName\":\"counter.js\",\"persistentData\":\"\",\"persistentKeyData\":{},\"uniqueId\":\"ky9\",\"drawingLines\":[],\"objectTags\":[],\"objectGroupId\":-1,\"ownerIndex\":-1,\"bCanBeDamaged\":false}"
+				"{\"objectType\":\"Card\",\"transform\":{\"rotation\":{\"x\":0,\"y\":0,\"z\":0,\"w\":1},\"translation\":{\"x\":-13.009897232055664,\"y\":-189.81040954589844,\"z\":2.8177700042724609},\"scale3D\":{\"x\":1,\"y\":1,\"z\":1}},\"simulatingPhysics\":true,\"atlasIndex\":0,\"frontTextureOverride\":\"\",\"inHand\":false,\"stackSerialization\":[],\"primaryColor\":{\"b\":255,\"g\":255,\"r\":255,\"a\":255},\"secondaryColor\":{\"b\":0,\"g\":0,\"r\":0,\"a\":255},\"metallic\":0,\"roughness\":1,\"friction\":0.69999998807907104,\"restitution\":0,\"density\":0.5,\"surfaceType\":\"SurfaceType4\",\"objectName\":\"\",\"objectDescription\":\"\",\"collisionType\":\"CB_Regular\",\"templateId\":\"50C5C0A747AF2AE89C8609A61502E59A\",\"shouldSnap\":true,\"previousPosition\":{\"x\":0,\"y\":0,\"z\":0},\"objectScriptPackage\":\"50A3373643159EA82BC95AB86B4A5CE3\",\"objectScriptName\":\"counter.js\",\"persistentData\":\"\",\"persistentKeyData\":{},\"uniqueId\":\"ky9\",\"drawingLines\":[],\"objectTags\":[],\"objectGroupId\":-1,\"ownerIndex\":-1,\"bCanBeDamaged\":false}"
 			],
 			"primaryColor":
 			{
@@ -3706,7 +3706,7 @@
 			"lazyLoad": false,
 			"containerTags": [],
 			"itemsJson": [
-				"{\"objectType\":\"Card\",\"transform\":{\"rotation\":{\"x\":0,\"y\":-0,\"z\":0,\"w\":1},\"translation\":{\"x\":17.229452133178711,\"y\":149.57769775390625,\"z\":5.9404683113098145},\"scale3D\":{\"x\":1,\"y\":1,\"z\":1}},\"simulatingPhysics\":true,\"atlasIndex\":0,\"frontTextureOverride\":\"https://c1.scryfall.com/file/scryfall-cards/large/front/8/b/8bbb3646-c427-4302-86ac-9ac28d045959.jpg?1649356381\",\"inHand\":false,\"stackSerialization\":[],\"primaryColor\":{\"b\":255,\"g\":255,\"r\":255,\"a\":255},\"secondaryColor\":{\"b\":0,\"g\":0,\"r\":0,\"a\":255},\"metallic\":0,\"roughness\":1,\"friction\":0.69999998807907104,\"restitution\":0,\"density\":0.5,\"surfaceType\":\"SurfaceType4\",\"objectName\":\"Plains\",\"objectDescription\":\"\",\"collisionType\":\"CB_Regular\",\"templateId\":\"259D66CE415FF02DA2381FBCDB053E1B\",\"shouldSnap\":true,\"previousPosition\":{\"x\":0,\"y\":0,\"z\":0},\"objectScriptPackage\":\"50A3373643159EA82BC95AB86B4A5CE3\",\"objectScriptName\":\"card.js\",\"persistentData\":\"\",\"persistentKeyData\":{\"0\":\"{\\\"id\\\":\\\"8bbb3646-c427-4302-86ac-9ac28d045959\\\"}\"},\"uniqueId\":\"4x6\",\"drawingLines\":[],\"objectTags\":[],\"objectGroupId\":-1,\"ownerIndex\":-1,\"bCanBeDamaged\":false}"
+				"{\"objectType\":\"Card\",\"transform\":{\"rotation\":{\"x\":0,\"y\":0,\"z\":0,\"w\":1},\"translation\":{\"x\":17.229452133178711,\"y\":149.57769775390625,\"z\":5.9404683113098145},\"scale3D\":{\"x\":1,\"y\":1,\"z\":1}},\"simulatingPhysics\":true,\"atlasIndex\":0,\"frontTextureOverride\":\"https://c1.scryfall.com/file/scryfall-cards/large/front/8/b/8bbb3646-c427-4302-86ac-9ac28d045959.jpg?1649356381\",\"inHand\":false,\"stackSerialization\":[],\"primaryColor\":{\"b\":255,\"g\":255,\"r\":255,\"a\":255},\"secondaryColor\":{\"b\":0,\"g\":0,\"r\":0,\"a\":255},\"metallic\":0,\"roughness\":1,\"friction\":0.69999998807907104,\"restitution\":0,\"density\":0.5,\"surfaceType\":\"SurfaceType4\",\"objectName\":\"\",\"objectDescription\":\"\",\"collisionType\":\"CB_Regular\",\"templateId\":\"259D66CE415FF02DA2381FBCDB053E1B\",\"shouldSnap\":true,\"previousPosition\":{\"x\":0,\"y\":0,\"z\":0},\"objectScriptPackage\":\"50A3373643159EA82BC95AB86B4A5CE3\",\"objectScriptName\":\"card.js\",\"persistentData\":\"\",\"persistentKeyData\":{\"0\":\"{\\\"id\\\":\\\"8bbb3646-c427-4302-86ac-9ac28d045959\\\"}\"},\"uniqueId\":\"4x6\",\"drawingLines\":[],\"objectTags\":[],\"objectGroupId\":-1,\"ownerIndex\":-1,\"bCanBeDamaged\":false}"
 			],
 			"primaryColor":
 			{
@@ -3840,7 +3840,7 @@
 				{
 					"x": -34.148639678955078,
 					"y": -13.797624588012695,
-					"z": 0.099993869662284851
+					"z": 0.099993877112865448
 				},
 				"scale3D":
 				{
@@ -4205,7 +4205,7 @@
 				{
 					"x": 31.142251968383789,
 					"y": -2.5875229835510254,
-					"z": 0.099998816847801208
+					"z": 0.099998824298381805
 				},
 				"scale3D":
 				{
@@ -4343,7 +4343,7 @@
 				"rotation":
 				{
 					"x": 6.5564773876758409e-07,
-					"y": -4.3282526007715205e-07,
+					"y": -4.3282523165544262e-07,
 					"z": 1,
 					"w": 7.5697903412219603e-06
 				},
@@ -4707,8 +4707,8 @@
 			{
 				"rotation":
 				{
-					"x": -3.5526011386149969e-12,
-					"y": -4.6931305064390472e-07,
+					"x": -3.5526007049341279e-12,
+					"y": -4.6931299380048586e-07,
 					"z": 1,
 					"w": 7.5697898864746094e-06
 				},
@@ -4781,9 +4781,9 @@
 				"rotation":
 				{
 					"x": -5.3263482868715073e-07,
-					"y": -3.3774190910662583e-07,
-					"z": 1,
-					"w": 7.6889991760253906e-06
+					"y": -3.3774176699807867e-07,
+					"z": 0.99999994039535522,
+					"w": 7.8678131103515625e-06
 				},
 				"translation":
 				{
