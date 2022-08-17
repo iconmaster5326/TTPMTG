@@ -1,7 +1,7 @@
 <html>
   <body>
     <h1>TTPMTG - Magic: the Gathering for Tabletop Playground</h1>
-    <h2>Version 1.1.2</h2>
+    <h2>Version 1.2.0</h2>
     <p>
       Hello and welcome to TTPMTG, the ultimate Magic: the Gathering experience
       for Tabletop Playground!
@@ -53,6 +53,16 @@
       <li><a href="https://mtgvault.com">MTG Vault</a></li>
       <li><a href="https://cubecobra.com">Cube Cobra</a></li>
     </ul>
+    <p>
+      You can also use the command
+      <span class="tt">/rawimport &lt;url&gt;</span> to import a textual
+      decklist directly from a site that serves such raw text files, such as
+      <a href="https://pastebin.com/">Pastebin</a> or
+      <a href="https://gist.github.com/">Github Gist</a>. To do this, ensure
+      that the URL you provide is to the raw file; you can do this in the
+      aforementioned sites by clicking the "raw" button at the top of the
+      document and copying the resulting URL.
+    </p>
     <h2>Generating Booster Packs</h2>
     <p>
       Do you want to host a draft or sealed event, or just want to crack some
@@ -150,6 +160,17 @@
       </li>
     </ul>
     <h2>Changelog</h2>
+    <h3>Version 1.2.0</h3>
+    <h4>Additions</h4>
+    <ul>
+      <li>
+        Added the <span class="tt">/rawimport</span> command, which allows you
+        to import decklists from sites like Pastebin or Github Gist. This
+        directly supports MTGA's, Archidekt's, and Moxfield's raw export
+        formats, but should also cover just about any other commonly used
+        decklist text format.
+      </li>
+    </ul>
     <h3>Version 1.1.2</h3>
     <h4>Fixes</h4>
     <ul>

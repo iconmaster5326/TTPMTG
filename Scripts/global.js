@@ -165,13 +165,6 @@ class ImportCardInfo {
 
     if (this.id) {
       return Promise.resolve(processCard(self.id));
-    } else if (this.name) {
-      return world.fetchScryfallDataByName(this.name).then(function (card) {
-        if (card.id === undefined) {
-          throw card.details;
-        }
-        return processCard(card.id);
-      });
     } else if (this.setCode && this.setNumber) {
       return world
         .fetchScryfallDataBySetCode(this.setCode, this.setNumber)
@@ -181,6 +174,13 @@ class ImportCardInfo {
           }
           return processCard(card.id);
         });
+    } else if (this.name) {
+      return world.fetchScryfallDataByName(this.name).then(function (card) {
+        if (card.id === undefined) {
+          throw card.details;
+        }
+        return processCard(card.id);
+      });
     } else {
       throw "bad world.ImportCardInfo object!";
     }
@@ -214,9 +214,9 @@ globalEvents.onChatMessage.add(function (sender, message) {
     COMMAND_SETS = "/sets",
     COMMAND_PACK = "/pack",
     COMMAND_DECK = "/deck";
-  COMMAND_DECKS = "/decks";
+  (COMMAND_DECKS = "/decks"), (COMMAND_IMPORT_RAW = "/rawimport");
   if (message.startsWith(COMMAND_IMPORT)) {
-    // TODO: ManaStack
+    // TODO: ManaStack, untapped.gg
     try {
       console.log("Import command recieved!");
       const deckurl = url.parse(
@@ -1042,6 +1042,110 @@ globalEvents.onChatMessage.add(function (sender, message) {
     } else {
       console.log("Using cached deck database");
       makeDeck();
+    }
+  } else if (message.startsWith(COMMAND_IMPORT_RAW)) {
+    try {
+      console.log("Rawimport command recieved!");
+      fetch(message.substring(COMMAND_IMPORT_RAW.length).trim())
+        .then((response) => {
+          try {
+            world.importCards(
+              sender,
+              response
+                .text()
+                .split(/[\r\n]+/)
+                .map((line) => {
+                  var name = undefined,
+                    setCode = undefined,
+                    setNumber = undefined;
+                  var qty = 1;
+                  var foundFirstWord = false,
+                    couldBeSetNumber = false, inOptions = false;
+
+                  line.split(/\s+/).forEach((word) => {
+                    if (word.match(/^[#*^\[]/) || word.match(/[#*^\]]$/)) {
+                      // filter out tags, foil, printing, and other options
+                      inOptions = true;
+                    } else if (word.match(/^\([^\)]*\)$/)) {
+                      // text in parens is set code
+                      setCode = word.replace(/[\(\)]/g, "");
+                      couldBeSetNumber = true;
+                    } else if (couldBeSetNumber) {
+                      // in MTGA format, set number is unquoted and always follows set code
+                      couldBeSetNumber = false;
+                      setNumber = word;
+                    } else if (inOptions) {
+                      // sometimes, options (like Moxfield tags) can contain spaces; ignore them
+                    } else {
+                      var parseAsName = true;
+
+                      if (!foundFirstWord) {
+                        const qtyMatch = word.match(/^(\d+)[xX]?$/);
+                        if (qtyMatch) {
+                          parseAsName = false;
+                          qty = Number(qtyMatch[1]);
+                        }
+                      }
+
+                      if (parseAsName) {
+                        if (word.match(/^[/\\][/\\]?$/)) {
+                          // normalize the name of dfcs
+                          word = "//";
+                        }
+                        if (name) {
+                          name = name + " " + word;
+                        } else {
+                          name = word;
+                        }
+                      }
+                    }
+
+                    foundFirstWord = true;
+                  });
+
+                  if (name === undefined) {
+                    throw "Unparsable line in file: '" + line + "'";
+                  }
+
+                  return new ImportCardInfo({
+                    name: name,
+                    quantity: qty,
+                    setCode: setCode,
+                    setNumber: setNumber,
+                  });
+                }),
+              0,
+              (deckObject) => {
+                sender.sendChatMessage(
+                  deckObject.getStackSize() + " cards successfully imported!",
+                  new Color(0, 255, 0)
+                );
+              }
+            );
+          } catch (reason) {
+            console.log("Exception in parsing /rawimport: " + reason);
+            console.trace(reason);
+            sender.sendChatMessage(
+              "Error in parsing decklist: " + reason,
+              new Color(255, 0, 0)
+            );
+          }
+        })
+        .catch((reason) => {
+          console.log("Exception in fetching /rawimport: " + reason);
+          console.trace(reason);
+          sender.sendChatMessage(
+            "Error in fetching decklist: " + reason,
+            new Color(255, 0, 0)
+          );
+        });
+    } catch (reason) {
+      console.log("Exception in /rawimport: " + reason);
+      console.trace(reason);
+      sender.sendChatMessage(
+        "An internal error occured!",
+        new Color(255, 0, 0)
+      );
     }
   }
 });
