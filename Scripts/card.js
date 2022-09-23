@@ -20,7 +20,8 @@ const ACTION_SET = "Set Card...",
   ACTION_TAP = "Tap",
   ACTION_UNTAP = "Untap",
   ACTION_XFORM = "Transform",
-  ACTION_ADD_RELATED = "Get Related Tokens";
+  ACTION_ADD_RELATED = "Get Related Tokens",
+  ACTION_ORACLE = "Show Oracle Text";
 
 /////////////
 // public API
@@ -210,6 +211,7 @@ function refresh(cards, cardIndex) {
 
   cards.removeCustomAction(ACTION_SET);
   cards.removeCustomAction(ACTION_ADD);
+  cards.removeCustomAction(ACTION_ORACLE);
 
   if (cardState.id === undefined) {
     cards.setTextureOverrideURLAt(undefined, cardIndex);
@@ -224,17 +226,22 @@ function refresh(cards, cardIndex) {
     world.fetchScryfallDataByID(cardState.id).then(function (cardData) {
       if (cardData !== undefined) {
         // add actions
-        if (
-          cards.getStackSize() == 1 &&
-          DFC_LAYOUTS.includes(cardData.layout)
-        ) {
+        if (cards.getStackSize() == 1) {
           cards.addCustomAction(
-            ACTION_XFORM,
-            "Flip this double-faced card over."
+            ACTION_ORACLE,
+            "Bring up the oracle text, rulings, etc. from Scryfall."
           );
-        } else {
-          cards.removeCustomAction(ACTION_XFORM);
+
+          if (DFC_LAYOUTS.includes(cardData.layout)) {
+            cards.addCustomAction(
+              ACTION_XFORM,
+              "Flip this double-faced card over."
+            );
+          } else {
+            cards.removeCustomAction(ACTION_XFORM);
+          }
         }
+
         // fetch image
         if (DFC_LAYOUTS.includes(cardData.layout)) {
           // double-faced card
@@ -392,6 +399,15 @@ refCard.onCustomAction.add(function (_, player, name) {
         world.importCards(player, tokens, 1, function (deckObject) {
           deckObject.flipOrUpright();
         });
+      });
+      break;
+    case ACTION_ORACLE:
+      refCard.scryfallData(0).then(function (data) {
+        const oracleBrowser = world.createObjectFromTemplate(
+          "F671CCDD41CAAC1CE77907A66FEFF3FC",
+          player.getCursorPosition().add(new Vector(0, 0, 1))
+        );
+        oracleBrowser.setURL(data.scryfall_uri);
       });
       break;
   }

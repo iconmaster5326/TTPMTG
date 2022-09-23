@@ -62,14 +62,16 @@
 			"Texture": "manual.pdf",
 			"NormalMap": "",
 			"ExtraMap": "",
-			"EmissiveMap": "",
+			"ExtraMap2": "",
 			"IsTransparent": false,
 			"CastShadow": true,
+			"IsTwoSided": false,
 			"UseOverrides": true,
 			"SurfaceType": "Cardboard",
 			"UseCardModel": true,
 			"Indices": [ 0, 1, 2 ],
 			"Emissive": false
 		}
-	]
+	],
+	"Circular": false
 }
