@@ -95,12 +95,19 @@ text.onTextCommitted.add(function (_, player, textAdded, usingEnter) {
 });
 
 var uiIndex = undefined;
+var changedUILastTick = false; // to work around a bug with UI bounding boxes
 globalEvents.onTick.add(function (_) {
+  if (changedUILastTick) {
+    changedUILastTick = false;
+    return;
+  }
+  
   var player = refObject.getOwningPlayer();
 
   if (refObject.getOwningPlayerSlot() == -1) {
     if (uiIndex === undefined) {
       uiIndex = refObject.addUI(ui);
+      changedUILastTick = true;
     }
   } else if (player !== undefined) {
     if (
@@ -109,11 +116,13 @@ globalEvents.onTick.add(function (_) {
     ) {
       if (uiIndex === undefined) {
         uiIndex = refObject.addUI(ui);
+        changedUILastTick = true;
       }
     } else {
       if (uiIndex !== undefined) {
         refObject.removeUI(uiIndex);
         uiIndex = undefined;
+        changedUILastTick = true;
       }
     }
   }
