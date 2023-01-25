@@ -209,6 +209,38 @@ world.importCards = function (sender, cards, deckIndex, onSuccess) {
   }
 };
 
+function fetchSetDatabase() {
+  if (allSets === undefined) {
+    console.log("fetching set database");
+    return fetch(MTGJSON_URL + "SetList.json").then(function (response) {
+      allSets = response.json().data;
+      console.log("set database fetched");
+      return allSets;
+    });
+  } else {
+    console.log("Using cached set database");
+    return new Promise(function (resolve, reject) {
+      resolve(allSets);
+    });
+  }
+}
+
+function fetchDeckDatabase() {
+  if (allDecks === undefined) {
+    console.log("fetching deck database");
+    return fetch(MTGJSON_URL + "DeckList.json").then(function (response) {
+      allDecks = response.json().data;
+      console.log("deck database fetched");
+      return allDecks;
+    });
+  } else {
+    console.log("Using cached deck database");
+    return new Promise(function (resolve, reject) {
+      resolve(allDecks);
+    });
+  }
+}
+
 function commandImport(sender, args) {
   // TODO: ManaStack, untapped.gg
   console.log("Import command recieved!");
@@ -688,7 +720,7 @@ function commandImport(sender, args) {
 }
 
 function commandSets(sender, args) {
-  function listPacks() {
+  function listPacks(allSets) {
     sender.sendChatMessage("Sets matching your search:", new Color(0, 255, 0));
     result = "";
     allSets.forEach((set) => {
@@ -711,21 +743,11 @@ function commandSets(sender, args) {
     sender.sendChatMessage(result, new Color(0, 255, 0));
   }
 
-  if (allDecks === undefined) {
-    console.log("fetching set database");
-    fetch(MTGJSON_URL + "SetList.json")
-      .then(function (response) {
-        allSets = response.json().data;
-        console.log("set database fetched");
-        listPacks();
-      })
-      .catch(function (reason) {
-        internalError(sender, "sets", reason);
-      });
-  } else {
-    console.log("Using cached set database");
-    listPacks();
-  }
+  fetchSetDatabase()
+    .then(listPacks)
+    .catch(function (reason) {
+      internalError(sender, "sets", reason);
+    });
 }
 
 function commandPack(sender, rawargs) {
@@ -737,7 +759,7 @@ function commandPack(sender, rawargs) {
   }
   console.log("Fetching pack " + args[0] + "...");
 
-  function makePack() {
+  function makePack(allSets) {
     const qty = args.length == 1 ? 1 : Number.parseInt(args[1]);
     const searchTerm = normalize(args[0]);
     let packData;
@@ -854,21 +876,11 @@ function commandPack(sender, rawargs) {
     }
   }
 
-  if (allSets === undefined) {
-    console.log("fetching set database");
-    fetch(MTGJSON_URL + "SetList.json")
-      .then(function (response) {
-        allSets = response.json().data;
-        console.log("set database fetched");
-        makePack();
-      })
-      .catch(function (reason) {
-        internalError(sender, "pack", reason);
-      });
-  } else {
-    console.log("Using cached set database");
-    makePack();
-  }
+  fetchSetDatabase()
+    .then(makePack)
+    .catch(function (reason) {
+      internalError(sender, "pack", reason);
+    });
 }
 
 function commandDeck(sender, rawargs) {
@@ -880,7 +892,7 @@ function commandDeck(sender, rawargs) {
   }
   console.log("Fetching precon deck " + args[0] + "...");
 
-  function makeDeck() {
+  function makeDeck(allDecks) {
     const deckInfo = allDecks.filter(
       (d) => normalize(d.name) == normalize(args[0])
     )[0];
@@ -966,25 +978,15 @@ function commandDeck(sender, rawargs) {
       });
   }
 
-  if (allDecks === undefined) {
-    console.log("fetching deck database");
-    fetch(MTGJSON_URL + "DeckList.json")
-      .then(function (response) {
-        allDecks = response.json().data;
-        console.log("deck database fetched");
-        makeDeck();
-      })
-      .catch(function (reason) {
-        internalError(sender, "deck", reason);
-      });
-  } else {
-    console.log("Using cached deck database");
-    makeDeck();
-  }
+  fetchDeckDatabase()
+    .then(makeDeck)
+    .catch(function (reason) {
+      internalError(sender, "deck", reason);
+    });
 }
 
 function commandDecks(sender, args) {
-  function listDecks() {
+  function listDecks(allDecks) {
     sender.sendChatMessage(
       "Preconstructed decks matching your search:",
       new Color(0, 255, 0)
@@ -1010,21 +1012,11 @@ function commandDecks(sender, args) {
     sender.sendChatMessage(result, new Color(0, 255, 0));
   }
 
-  if (allDecks === undefined) {
-    console.log("fetching deck database");
-    fetch(MTGJSON_URL + "DeckList.json")
-      .then(function (response) {
-        allDecks = response.json().data;
-        console.log("deck database fetched");
-        listDecks();
-      })
-      .catch(function (reason) {
-        internalError(sender, "decks", reason);
-      });
-  } else {
-    console.log("Using cached deck database");
-    listDecks();
-  }
+  fetchDeckDatabase()
+    .then(listDecks)
+    .catch(function (reason) {
+      internalError(sender, "decks", reason);
+    });
 }
 
 function commandImportRaw(sender, args) {
