@@ -1112,6 +1112,129 @@ function commandImportRaw(sender, args) {
     });
 }
 
+function commandJumpstart(sender, rawargs) {
+  const args = parseArgs(rawargs.join(" "));
+  if (args.length < 1 || args.length > 2) {
+    sender.sendChatMessage(
+      "Usage: /jumpstart <set> [qty]",
+      new Color(255, 0, 0)
+    );
+    return;
+  }
+  const set = args[0];
+  const qty = args.length <= 1 ? 1 : Number(args[1]);
+  fetchSetDatabase()
+    .then(function (allSets) {
+      const searchTerm = normalize(set);
+      let packData;
+      for (let i = 0; i < allSets.length; i++) {
+        const pack = allSets[i];
+        if (
+          normalize(pack.name) == searchTerm ||
+          normalize(pack.code) == searchTerm
+        ) {
+          packData = pack;
+          break;
+        }
+      }
+      if (packData === undefined) {
+        sender.sendChatMessage(
+          "Could not find a set called " + set + "!",
+          new Color(255, 0, 0)
+        );
+        sender.sendChatMessage(
+          "(Valid inputs include the set's name or code.)",
+          new Color(255, 0, 0)
+        );
+        return;
+      }
+      fetchDeckDatabase()
+        .then(function (allDecks) {
+          const possibleDecks = [];
+          for (let i = 0; i < allDecks.length; i++) {
+            const deck = allDecks[i];
+            if (deck.code === packData.code) {
+              possibleDecks.push(deck);
+            }
+          }
+          if (possibleDecks.length === 0) {
+            sender.sendChatMessage(
+              "Set '" +
+                packData.name +
+                "' has no Jumpstart packs or decks associated with it!",
+              new Color(255, 0, 0)
+            );
+            return;
+          }
+          for (let i = 0; i < qty; i++) {
+            let deckInfo =
+              possibleDecks[Math.floor(Math.random() * possibleDecks.length)];
+            fetch(MTGJSON_URL + "decks/" + deckInfo.fileName + ".json")
+              .then(function (response) {
+                const deckContents = response.json().data;
+                const cards = [];
+                deckContents.mainBoard.forEach(function (card) {
+                  cards.push(
+                    new world.ImportCardInfo({
+                      setCode: card.setCode,
+                      setNumber: card.number,
+                      quantity: card.count,
+                    })
+                  );
+                });
+                if (
+                  deckContents.sideBoard &&
+                  deckContents.sideBoard.length > 0
+                ) {
+                  deckContents.sideBoard.forEach(function (card) {
+                    cards.push(
+                      new world.ImportCardInfo({
+                        setCode: card.setCode,
+                        setNumber: card.number,
+                        quantity: card.count,
+                      })
+                    );
+                  });
+                }
+                if (
+                  deckContents.commanders &&
+                  deckContents.commanders.length > 0
+                ) {
+                  deckContents.commanders.forEach(function (card) {
+                    cards.push(
+                      new world.ImportCardInfo({
+                        setCode: card.setCode,
+                        setNumber: card.number,
+                        quantity: card.count,
+                      })
+                    );
+                  });
+                }
+                world.importCards(sender, cards, i, function (deckObject) {
+                  sender.sendChatMessage(
+                    "Successfully generated " +
+                      deckObject.getStackSize() +
+                      "-card " +
+                      packData.name +
+                      " pack!",
+                    new Color(0, 255, 0)
+                  );
+                });
+              })
+              .catch(function (reason) {
+                internalError(sender, "jumpstart", reason);
+              });
+          }
+        })
+        .catch(function (reason) {
+          internalError(sender, "jumpstart", reason);
+        });
+    })
+    .catch(function (reason) {
+      internalError(sender, "jumpstart", reason);
+    });
+}
+
 COMMANDS = {
   import: commandImport,
   sets: commandSets,
@@ -1119,6 +1242,7 @@ COMMANDS = {
   deck: commandDeck,
   decks: commandDecks,
   rawimport: commandImportRaw,
+  jumpstart: commandJumpstart,
 };
 
 function internalError(sender, command, reason) {
