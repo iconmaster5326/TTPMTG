@@ -791,7 +791,7 @@ function commandPack(sender, rawargs) {
       function addCardsToPacks() {
         // find entry for us in booster database
         const fullSetData = allBoosters[packData.code];
-        const booster = fullSetData.booster.default;
+        const booster = fullSetData.booster.default || fullSetData.booster.draft;
         for (let i = 0; i < qty; i++) {
           // generate a new pack
           console.log("Making pack " + i);
