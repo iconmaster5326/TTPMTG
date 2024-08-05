@@ -159,7 +159,7 @@ refObject.onCustomAction.add(function (_, player, name) {
       break;
     case DISOWN_THIS:
       refObject.setOwningPlayerSlot(-1);
-      staticUI.widget.setTextColor(new Color(255, 255, 255));
+      staticUI.widget.setTextColor(new Color(1, 1, 1));
       break;
   }
   updateMenu();
