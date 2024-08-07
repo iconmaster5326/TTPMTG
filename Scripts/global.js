@@ -14,6 +14,9 @@ const SCRYFALL_URL = "https://api.scryfall.com/";
 const MTGJSON_URL = "https://mtgjson.com/api/v5/";
 const CARD_TEMPLATE = "259D66CE415FF02DA2381FBCDB053E1B";
 
+const GREEN = new Color(0, 1, 0)
+const RED = new Color(1, 0, 0)
+
 world.startDebugMode();
 
 const scryfallCacheByID = {},
@@ -205,7 +208,7 @@ world.importCards = function (sender, cards, deckIndex, onSuccess) {
   if (cards_.length > 0) {
     doImport(undefined);
   } else {
-    sender.sendChatMessage("No cards to import!", new Color(255, 0, 0));
+    sender.sendChatMessage("No cards to import!", RED);
   }
 };
 
@@ -249,7 +252,7 @@ function commandImport(sender, args) {
   if (deckurl.hostname == "archidekt.com") {
     sender.sendChatMessage(
       "Importing deck from Archidekt...",
-      new Color(0, 255, 0)
+      GREEN
     );
     const apiURL =
       "https://archidekt.com/api/decks/" +
@@ -294,7 +297,7 @@ function commandImport(sender, args) {
             "Successfully imported " +
               deckObject.getStackSize() +
               "-card mainboard!",
-            new Color(0, 255, 0)
+            GREEN
           );
         });
 
@@ -316,7 +319,7 @@ function commandImport(sender, args) {
               "Successfully imported " +
                 deckObject.getStackSize() +
                 "-card sideboard!",
-              new Color(0, 255, 0)
+              GREEN
             );
           });
 
@@ -338,7 +341,7 @@ function commandImport(sender, args) {
               "Successfully imported " +
                 deckObject.getStackSize() +
                 " commanders!",
-              new Color(0, 255, 0)
+              GREEN
             );
           });
       })
@@ -348,7 +351,7 @@ function commandImport(sender, args) {
   } else if (deckurl.hostname == "tappedout.net") {
     sender.sendChatMessage(
       "Importing deck from TappedOut...",
-      new Color(0, 255, 0)
+      GREEN
     );
     fetch(url.format(deckurl))
       .then(function (response) {
@@ -373,7 +376,7 @@ function commandImport(sender, args) {
             "Successfully imported " +
               deckObject.getStackSize() +
               "-card mainboard and sideboard!",
-            new Color(0, 255, 0)
+            GREEN
           );
         });
 
@@ -383,7 +386,7 @@ function commandImport(sender, args) {
               "Successfully imported " +
                 deckObject.getStackSize() +
                 " commanders!",
-              new Color(0, 255, 0)
+              GREEN
             );
           });
       })
@@ -393,7 +396,7 @@ function commandImport(sender, args) {
   } else if (deckurl.hostname == "www.mtggoldfish.com") {
     sender.sendChatMessage(
       "Importing deck from MtG Goldfish...",
-      new Color(0, 255, 0)
+      GREEN
     );
     fetch(url.format(deckurl))
       .then(function (response) {
@@ -417,7 +420,7 @@ function commandImport(sender, args) {
             "Successfully imported " +
               deckObject.getStackSize() +
               "-card deck!",
-            new Color(0, 255, 0)
+            GREEN
           );
         });
       })
@@ -430,7 +433,7 @@ function commandImport(sender, args) {
   ) {
     sender.sendChatMessage(
       "Importing deck from Moxfield...",
-      new Color(0, 255, 0)
+      GREEN
     );
     fetch("https://api.moxfield.com/v2/decks/all/" + deckurl.path.split("/")[2])
       .then(function (response) {
@@ -451,7 +454,7 @@ function commandImport(sender, args) {
             "Successfully imported " +
               deckObject.getStackSize() +
               "-card mainboard!",
-            new Color(0, 255, 0)
+            GREEN
           );
         });
 
@@ -469,7 +472,7 @@ function commandImport(sender, args) {
               "Successfully imported " +
                 deckObject.getStackSize() +
                 " commanders!",
-              new Color(0, 255, 0)
+              GREEN
             );
           });
       })
@@ -482,7 +485,7 @@ function commandImport(sender, args) {
   ) {
     sender.sendChatMessage(
       "Importing deck from AetherHub...",
-      new Color(0, 255, 0)
+      GREEN
     );
     fetch(url.format(deckurl))
       .then(function (response) {
@@ -518,7 +521,7 @@ function commandImport(sender, args) {
             "Successfully imported " +
               deckObject.getStackSize() +
               "-card deck!",
-            new Color(0, 255, 0)
+            GREEN
           );
         });
       })
@@ -531,7 +534,7 @@ function commandImport(sender, args) {
   ) {
     sender.sendChatMessage(
       "Importing deck from Deckstats...",
-      new Color(0, 255, 0)
+      GREEN
     );
     fetch(
       "https://deckstats.net/api.php?action=get_deck&id_type=saved&owner_id=" +
@@ -579,7 +582,7 @@ function commandImport(sender, args) {
             "Successfully imported " +
               deckObject.getStackSize() +
               "-card deck!",
-            new Color(0, 255, 0)
+            GREEN
           );
         });
       })
@@ -592,7 +595,7 @@ function commandImport(sender, args) {
   ) {
     sender.sendChatMessage(
       "Importing deck from MTG Top 8...",
-      new Color(0, 255, 0)
+      GREEN
     );
     fetch(url.format(deckurl))
       .then(function (response) {
@@ -619,7 +622,7 @@ function commandImport(sender, args) {
             "Successfully imported " +
               deckObject.getStackSize() +
               "-card deck!",
-            new Color(0, 255, 0)
+            GREEN
           );
         });
       })
@@ -632,7 +635,7 @@ function commandImport(sender, args) {
   ) {
     sender.sendChatMessage(
       "Importing deck from MTG Vault...",
-      new Color(0, 255, 0)
+      GREEN
     );
     fetch(url.format(deckurl))
       .then(function (response) {
@@ -672,7 +675,7 @@ function commandImport(sender, args) {
             "Successfully imported " +
               deckObject.getStackSize() +
               "-card deck!",
-            new Color(0, 255, 0)
+            GREEN
           );
         });
       })
@@ -685,7 +688,7 @@ function commandImport(sender, args) {
   ) {
     sender.sendChatMessage(
       "Importing cube from CubeCobra...",
-      new Color(0, 255, 0)
+      GREEN
     );
     fetch(
       "https://cubecobra.com/cube/api/cubeJSON/" +
@@ -704,7 +707,7 @@ function commandImport(sender, args) {
             "Successfully imported " +
               deckObject.getStackSize() +
               "-card cube!",
-            new Color(0, 255, 0)
+            GREEN
           );
         });
       })
@@ -714,14 +717,14 @@ function commandImport(sender, args) {
   } else {
     sender.sendChatMessage(
       "Unknown deck hosting site " + deckurl.hostname + "!",
-      new Color(255, 0, 0)
+      RED
     );
   }
 }
 
 function commandSets(sender, args) {
   function listPacks(allSets) {
-    sender.sendChatMessage("Sets matching your search:", new Color(0, 255, 0));
+    sender.sendChatMessage("Sets matching your search:", GREEN);
     result = "";
     allSets.forEach((set) => {
       let matches = true;
@@ -740,7 +743,7 @@ function commandSets(sender, args) {
         result += set.name + " (" + set.code + ")";
       }
     });
-    sender.sendChatMessage(result, new Color(0, 255, 0));
+    sender.sendChatMessage(result, GREEN);
   }
 
   fetchSetDatabase()
@@ -754,7 +757,7 @@ function commandPack(sender, rawargs) {
   console.log("Pack command recieved!");
   const args = parseArgs(rawargs.join(" "));
   if (args.length == 0 || args.length > 2) {
-    sender.sendChatMessage("Usage: /pack <name> [qty]", new Color(255, 0, 0));
+    sender.sendChatMessage("Usage: /pack <name> [qty]", RED);
     return;
   }
   console.log("Fetching pack " + args[0] + "...");
@@ -776,16 +779,16 @@ function commandPack(sender, rawargs) {
     if (packData === undefined) {
       sender.sendChatMessage(
         "Could not find a pack called " + args[0] + "!",
-        new Color(255, 0, 0)
+        RED
       );
       sender.sendChatMessage(
         "(Valid inputs include the set's name or code.)",
-        new Color(255, 0, 0)
+        RED
       );
     } else {
       sender.sendChatMessage(
         "Making " + qty + " packs of " + packData.name + "...",
-        new Color(0, 255, 0)
+        GREEN
       );
 
       function addCardsToPacks() {
@@ -851,7 +854,7 @@ function commandPack(sender, rawargs) {
                 " of " +
                 packData.name +
                 "!",
-              new Color(0, 255, 0)
+              GREEN
             );
           });
         }
@@ -887,7 +890,7 @@ function commandDeck(sender, rawargs) {
   console.log("Deck command recieved!");
   const args = parseArgs(rawargs.join(" "));
   if (args.length == 0 || args.length > 1) {
-    sender.sendChatMessage("Usage: /deck <name>", new Color(255, 0, 0));
+    sender.sendChatMessage("Usage: /deck <name>", RED);
     return;
   }
   console.log("Fetching precon deck " + args[0] + "...");
@@ -899,13 +902,13 @@ function commandDeck(sender, rawargs) {
     if (deckInfo === undefined) {
       sender.sendChatMessage(
         "No deck found with the name '" + args[0] + "'!",
-        new Color(255, 0, 0)
+        RED
       );
       return;
     }
     sender.sendChatMessage(
       "Importing precon deck '" + deckInfo.name + "'...",
-      new Color(0, 255, 0)
+      GREEN
     );
     fetch(MTGJSON_URL + "decks/" + deckInfo.fileName + ".json")
       .then(function (response) {
@@ -927,7 +930,7 @@ function commandDeck(sender, rawargs) {
             "Successfully imported " +
               deckObject.getStackSize() +
               "-card mainboard!",
-            new Color(0, 255, 0)
+            GREEN
           );
         });
 
@@ -947,7 +950,7 @@ function commandDeck(sender, rawargs) {
               "Successfully imported " +
                 deckObject.getStackSize() +
                 "-card sideboard!",
-              new Color(0, 255, 0)
+              GREEN
             );
           });
         }
@@ -968,7 +971,7 @@ function commandDeck(sender, rawargs) {
               "Successfully imported " +
                 deckObject.getStackSize() +
                 " commanders!",
-              new Color(0, 255, 0)
+              GREEN
             );
           });
         }
@@ -989,7 +992,7 @@ function commandDecks(sender, args) {
   function listDecks(allDecks) {
     sender.sendChatMessage(
       "Preconstructed decks matching your search:",
-      new Color(0, 255, 0)
+      GREEN
     );
     result = "";
     allDecks.forEach((deck) => {
@@ -1009,7 +1012,7 @@ function commandDecks(sender, args) {
         result += deck.name + " (" + deck.code + ")";
       }
     });
-    sender.sendChatMessage(result, new Color(0, 255, 0));
+    sender.sendChatMessage(result, GREEN);
   }
 
   fetchDeckDatabase()
@@ -1094,7 +1097,7 @@ function commandImportRaw(sender, args) {
           (deckObject) => {
             sender.sendChatMessage(
               deckObject.getStackSize() + " cards successfully imported!",
-              new Color(0, 255, 0)
+              GREEN
             );
           }
         );
@@ -1103,7 +1106,7 @@ function commandImportRaw(sender, args) {
         console.trace(reason);
         sender.sendChatMessage(
           "Error in parsing decklist: " + reason,
-          new Color(255, 0, 0)
+          RED
         );
       }
     })
@@ -1117,7 +1120,7 @@ function commandJumpstart(sender, rawargs) {
   if (args.length < 1 || args.length > 2) {
     sender.sendChatMessage(
       "Usage: /jumpstart <set> [qty]",
-      new Color(255, 0, 0)
+      RED
     );
     return;
   }
@@ -1140,11 +1143,11 @@ function commandJumpstart(sender, rawargs) {
       if (packData === undefined) {
         sender.sendChatMessage(
           "Could not find a set called " + set + "!",
-          new Color(255, 0, 0)
+          RED
         );
         sender.sendChatMessage(
           "(Valid inputs include the set's name or code.)",
-          new Color(255, 0, 0)
+          RED
         );
         return;
       }
@@ -1162,7 +1165,7 @@ function commandJumpstart(sender, rawargs) {
               "Set '" +
                 packData.name +
                 "' has no Jumpstart packs or decks associated with it!",
-              new Color(255, 0, 0)
+              RED
             );
             return;
           }
@@ -1217,7 +1220,7 @@ function commandJumpstart(sender, rawargs) {
                       "-card " +
                       packData.name +
                       " pack!",
-                    new Color(0, 255, 0)
+                    GREEN
                   );
                 });
               })
@@ -1248,7 +1251,7 @@ COMMANDS = {
 function internalError(sender, command, reason) {
   console.log("Exception in /" + command + ": " + reason);
   console.trace(reason);
-  sender.sendChatMessage("An internal error occured!", new Color(255, 0, 0));
+  sender.sendChatMessage("An internal error occured!", RED);
 }
 
 globalEvents.onChatMessage.add(function (sender, message) {
@@ -1260,7 +1263,7 @@ globalEvents.onChatMessage.add(function (sender, message) {
     if (!commandFn) {
       sender.sendChatMessage(
         "Unknown command: /" + command,
-        new Color(255, 0, 0)
+        RED
       );
       return;
     }
