@@ -29,6 +29,7 @@
 	"Blueprint": "",
 	"Models": [],
 	"Collision": [],
+	"Lights": [],
 	"SnapPointsGlobal": false,
 	"SnapPoints": [],
 	"ZoomViewDirection":
@@ -37,6 +38,7 @@
 		"Y": 0,
 		"Z": 1
 	},
+	"GroundAccessibility": "Nothing",
 	"Tags": [],
 	"MultistateModels": [
 		{
@@ -49,9 +51,9 @@
 			},
 			"Scale":
 			{
-				"X": 27.9402,
+				"X": 27.940200000000001,
 				"Y": 21.5901,
-				"Z": 0.3
+				"Z": 0.29999999999999999
 			},
 			"Rotation":
 			{
